@@ -102,3 +102,14 @@ select:focus-visible {
 .hairline {
   @apply h-px w-full bg-graphite-100;
 }
+
+/* Deterrent for casual saving of certificate images — see the comment on
+   components/ProtectedImage.js for what this does and doesn't achieve. */
+.no-save {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.no-save img {
+  pointer-events: none;
+}

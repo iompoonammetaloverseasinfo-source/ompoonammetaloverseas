@@ -1,4 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Suspense } from "react";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
 import GoogleMap from "@/components/GoogleMap";
@@ -31,7 +32,9 @@ export default function ContactPage() {
                 <span>Reply same working day</span>
               </div>
               <div className="p-6 sm:p-8">
-                <ContactForm />
+                <Suspense fallback={null}>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
           </ScrollReveal>

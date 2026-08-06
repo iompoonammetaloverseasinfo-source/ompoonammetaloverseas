@@ -3,14 +3,6 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { pages, siteConfig } from "@/data/siteConfig";
 import { company } from "@/data/company";
 
-function RingMark({ className }) {
-  return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <circle cx="20" cy="20" r="16" fill="none" stroke="currentColor" strokeWidth="6.5" />
-    </svg>
-  );
-}
-
 export default function Footer() {
   const navPages = pages.filter((p) => p.nav);
   const year = new Date().getFullYear();
@@ -20,7 +12,7 @@ export default function Footer() {
       <div className="wrap py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-2.5 text-paper">
-            <span className="font-display text-xl font-bold uppercase tracking-tight">
+            <span className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight">
               Om Poonam Metal <span className="text-brass-400">Overseas</span>
             </span>
           </div>

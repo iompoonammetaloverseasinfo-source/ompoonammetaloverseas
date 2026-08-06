@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { BadgeCheck, Calendar, FileCheck2, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, BadgeCheck, Calendar, FileCheck2, ShieldCheck } from "lucide-react";
+import ProtectedImage from "./ProtectedImage";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
 import { company } from "@/data/company";
@@ -45,7 +46,7 @@ export default function CertificateShowcase() {
                 <span className="text-brass-600">Verified</span>
               </div>
               <div className="p-3">
-                <Image
+                <ProtectedImage
                   src="/images/iso-9001-2015-certificate.jpg"
                   alt="ISO 9001:2015 Certificate of Registration issued to Om Poonam Metal Overseas by Vatsin World Services Private Limited"
                   width={1600}
@@ -115,6 +116,16 @@ export default function CertificateShowcase() {
                   </p>
                 </div>
               </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <Link
+                href="/about#certificates"
+                className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] text-graphite-700 hover:text-brass-600 border-b border-graphite-300 hover:border-brass-500 pb-1 transition-colors"
+              >
+                View GST, IEC &amp; Udyam certificates
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
             </ScrollReveal>
           </div>
         </div>

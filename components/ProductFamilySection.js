@@ -3,7 +3,7 @@ import ScrollReveal from "./ScrollReveal";
 export default function ProductFamilySection({ family }) {
   return (
     <ScrollReveal>
-      <div className="spec-card">
+      <div id={family.id} className="spec-card scroll-mt-24">
         <div className="spec-card__strip">
           <span>
             {family.code} · {family.name}

@@ -10,21 +10,83 @@ can be hosted anywhere.
 - **SEO**: unique title/description per page, Open Graph + Twitter cards,
   JSON-LD structured data (Organization + LocalBusiness), a real
   auto-generated `sitemap.xml` and `robots.txt`
-- **Your ISO 9001:2015 certificate**, rendered as a crisp image on the
-  homepage, plus a full credentials section (GSTIN, IEC, Udyam) on About
+- **A full multi-level product catalogue** — Pipes & Tubes, Pipe Fittings
+  (with Buttweld and Forged sub-groups), Flanges, Valves, Fasteners, Sheets/
+  Plates/Coils, Bars & Sections, and Furniture & Hardware — each with its
+  own real page and URL, nested as deep as the products actually go (e.g.
+  Products → Pipe Fittings → Buttweld Fittings → Elbow). See "The product
+  catalogue" section below for how to add more.
+- **A Products dropdown** in the header — desktop shows it on click, mobile
+  shows it as an expandable accordion inside the menu — linking straight to
+  every top-level catalogue category
+- **All 4 of your certificates** — ISO 9001:2015, GST Registration, IEC, and
+  Udyam (MSME) — shown on the homepage and as a tap-to-enlarge gallery on
+  the About page, plus a full credentials section (GSTIN, IEC, Udyam numbers)
 - **The founder's profile** (Mr. Harachndram V. Purohit) on the About page
-- **Full product catalogue** — every grade you listed, organised into
-  Stainless Steel / Alloy & Special Alloys / Non-Ferrous & Ferro Alloys,
-  plus the 12 forms you supply (sheets, plates, pipes, flanges, etc.)
+- **Full material grade catalogue** — every grade you listed, organised into
+  Stainless Steel / Alloy & Special Alloys / Non-Ferrous & Ferro Alloys
 - **Google Maps** embed on Home and Contact (no API key needed)
-- **A WhatsApp quick-contact button** and an enquiry form (see "Contact form"
-  below)
-- Fully responsive: tested at mobile (390px), tablet (834px) and desktop
-  (1440px) widths
+- **A WhatsApp quick-contact button** and an enquiry form that pre-fills
+  itself with the product name when someone clicks "Request a Quote" from
+  a catalogue page
+- Carefully tested on mobile — including down to 320px-wide screens — since
+  that's where most of your buyers will land
 - A distinctive visual identity — graphite/ink + brass accent, a "pipe
-  cross-section" logo mark, and a recurring "mill certificate" card style
-  used for products, certifications and standards — instead of a generic
-  template look
+  cross-section" logo mark, original technical line-art icons for every
+  product type, and a recurring "mill certificate" card style — instead of
+  a generic template look
+
+## The product catalogue
+
+Every product and sub-product — at any depth — lives in one file:
+`data/catalog.js`. Nothing else needs to be touched to add one.
+
+```js
+{
+  slug: "ball-valve",       // becomes part of the URL
+  name: "Ball Valve",
+  icon: "ball-valve",       // see components/ProductIcon.js for the list
+  description: "Quarter-turn on/off isolation with a bored ball for tight shutoff.",
+  grades: ["Stainless Steel", "Alloy Steel"],  // optional tags
+  children: [ /* optional — nest sub-types the same way */ ],
+}
+```
+
+Add an object like that to the right `children` array (or straight into
+`catalog` for a whole new top-level category) and run `npm run build`.
+That one entry automatically gets:
+- its own real page at its own URL (e.g. `/products/valves/ball-valve`)
+- a listing in `sitemap.xml`
+- a card wherever its parent is shown (the Products page, or its parent
+  category's page)
+- an entry in the header's Products dropdown, if it's top-level
+
+**About the icons.** Rather than use stock photos scraped from the web —
+which would belong to other companies or photo libraries, and using them
+on a live commercial site is a real legal risk — every product currently
+shows an original line-art icon (drawn in the style of standard piping/
+P&ID symbols). The moment you have real photos of your own stock, drop the
+file in `public/images/products/` and add `image: "/images/products/your-file.jpg"`
+to that product's entry — it'll replace the icon automatically, no other
+changes needed.
+
+## About the mobile header issue
+
+An earlier version of this site had a real bug: on some phones, the header
+text rendered oversized and overlapped the browser's own address bar. I
+tracked it down to how the site's CSS and a dropdown menu were structured,
+and rebuilt both more defensively:
+
+- The header bar now has an explicit height with overflow clipped, so it's
+  structurally impossible for it to grow past its intended size again.
+- The Products dropdown now renders through a React portal (a standard
+  pattern for exactly this kind of menu) instead of depending on layered
+  z-index rules, which is a more robust approach regardless of what caused
+  the original glitch.
+
+If you ever see anything render incorrectly on a specific phone again,
+the most useful thing to send back is the exact device/browser (e.g.
+"Chrome on a Samsung A14") plus a screenshot — that narrows it down fast.
 
 ## Before you launch — 3 things to update
 
@@ -95,7 +157,9 @@ The sitemap is not a file you edit by hand — it's generated from
 | To change...                          | Edit this file                  |
 |----------------------------------------|----------------------------------|
 | Company info, phone, email, address    | `data/company.js`               |
-| Product grades and forms               | `data/products.js`              |
+| Products & sub-products (multi-level)  | `data/catalog.js`               |
+| Material grades (SS/alloy/non-ferrous) | `data/products.js`              |
+| Certificate images shown in the gallery | `components/CertificatesGallery.js` + `public/images/` |
 | ASME/ASTM standards reference          | `data/standards.js`             |
 | Site title, description, page list     | `data/siteConfig.js`            |
 | Homepage layout                        | `app/page.js`                   |

@@ -1,26 +1,89 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import clsx from "clsx";
 import { pages, siteConfig } from "@/data/siteConfig";
 import { company } from "@/data/company";
+import { catalog } from "@/data/catalog";
 
-function RingMark({ className }) {
-  return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <circle cx="20" cy="20" r="16" fill="none" stroke="currentColor" strokeWidth="6.5" />
-    </svg>
+// Sub-links shown in the Products dropdown (desktop) and accordion (mobile).
+const productLinks = [
+  { href: "/products", label: "All Products" },
+  ...catalog.map((c) => ({ href: `/products/${c.slug}`, label: c.name })),
+];
+
+// Renders the dropdown menu into document.body via a portal, positioned
+// with `fixed` coordinates computed from the trigger button. This avoids
+// depending on z-index stacking through the header/hero DOM tree — the
+// menu is guaranteed to paint above everything else because it IS the
+// last thing in <body>, not because of a z-index that has to win a
+// cascade fight.
+function ProductsDropdownPortal({ anchorRect, onClose }) {
+  const [mounted, setMounted] = useState(false);
+  const panelRef = useRef(null);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const onClick = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) onClose();
+    };
+    const onKey = (e) => e.key === "Escape" && onClose();
+    const onScroll = () => onClose();
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [onClose]);
+
+  if (!mounted || !anchorRect) return null;
+
+  return createPortal(
+    <AnimatePresence>
+      <motion.div
+        ref={panelRef}
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -6 }}
+        transition={{ duration: 0.15 }}
+        style={{
+          position: "fixed",
+          top: anchorRect.bottom + 12,
+          left: anchorRect.left,
+        }}
+        className="z-[999] w-64 border border-graphite-700 bg-graphite-900 shadow-2xl"
+      >
+        {productLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="block border-b border-graphite-800 px-4 py-3 text-sm text-graphite-200 last:border-b-0 hover:bg-graphite-800 hover:text-brass-400"
+          >
+            {link.label}
+          </Link>
+        ))}
+      </motion.div>
+    </AnimatePresence>,
+    document.body
   );
 }
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [dropdownRect, setDropdownRect] = useState(null);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const pathname = usePathname();
+  const productsBtnRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -31,6 +94,8 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setDropdownRect(null);
+    setMobileProductsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -39,6 +104,15 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const toggleDesktopDropdown = () => {
+    if (dropdownRect) {
+      setDropdownRect(null);
+      return;
+    }
+    const rect = productsBtnRef.current?.getBoundingClientRect();
+    if (rect) setDropdownRect(rect);
+  };
 
   const navPages = pages.filter((p) => p.nav);
 
@@ -51,22 +125,48 @@ export default function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="wrap flex h-[68px] items-center justify-between">
+      <div className="wrap flex h-16 items-center justify-between overflow-hidden">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-paper"
+          className="flex min-w-0 shrink items-center gap-2 text-paper"
           aria-label={`${siteConfig.name} — home`}
         >
-          <span className="font-display text-5xl sm:text-xl font-bold uppercase leading-none tracking-tight">
+          <span className="hidden sm:inline whitespace-nowrap font-display text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tight">
+            Om Poonam Metal
+            <span className="text-brass-400"> Overseas</span>
+          </span>
+          <span className="sm:hidden whitespace-nowrap font-display text-xl font-bold uppercase leading-none tracking-tight">
             Om Poonam Metal
             <span className="text-brass-400"> Overseas</span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-8" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-7" aria-label="Primary">
           {navPages.map((p) => {
             const active = pathname === p.path;
+
+            if (p.path === "/products") {
+              return (
+                <button
+                  key={p.path}
+                  ref={productsBtnRef}
+                  type="button"
+                  onClick={toggleDesktopDropdown}
+                  aria-expanded={!!dropdownRect}
+                  className={clsx(
+                    "flex items-center gap-1 font-mono text-[13px] uppercase tracking-[0.12em] transition-colors",
+                    active ? "text-brass-400" : "text-graphite-200 hover:text-paper"
+                  )}
+                >
+                  {p.label}
+                  <ChevronDown
+                    className={clsx("h-3.5 w-3.5 transition-transform", dropdownRect && "rotate-180")}
+                  />
+                </button>
+              );
+            }
+
             return (
               <Link
                 key={p.path}
@@ -102,7 +202,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden inline-flex items-center justify-center h-10 w-10 text-paper"
+          className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center text-paper"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -118,12 +218,58 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden border-t border-graphite-700/60 bg-graphite-900"
+            className="lg:hidden overflow-hidden border-t border-graphite-700/60 bg-graphite-900 max-h-[calc(100vh-64px)] overflow-y-auto"
             aria-label="Mobile"
           >
             <div className="wrap flex flex-col py-4">
               {navPages.map((p) => {
                 const active = pathname === p.path;
+
+                if (p.path === "/products") {
+                  return (
+                    <div key={p.path} className="border-b border-graphite-800">
+                      <button
+                        type="button"
+                        onClick={() => setMobileProductsOpen((v) => !v)}
+                        aria-expanded={mobileProductsOpen}
+                        className={clsx(
+                          "flex w-full items-center justify-between py-3 font-display text-2xl font-semibold uppercase tracking-tight",
+                          active ? "text-brass-400" : "text-paper"
+                        )}
+                      >
+                        {p.label}
+                        <ChevronDown
+                          className={clsx(
+                            "h-5 w-5 transition-transform",
+                            mobileProductsOpen && "rotate-180"
+                          )}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileProductsOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden pl-3"
+                          >
+                            {productLinks.map((link) => (
+                              <Link
+                                key={link.href}
+                                href={link.href}
+                                className="block py-2.5 font-mono text-sm uppercase tracking-wide text-graphite-300"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={p.path}
@@ -154,6 +300,10 @@ export default function Navbar() {
           </motion.nav>
         )}
       </AnimatePresence>
+
+      {dropdownRect && (
+        <ProductsDropdownPortal anchorRect={dropdownRect} onClose={() => setDropdownRect(null)} />
+      )}
     </header>
   );
 }

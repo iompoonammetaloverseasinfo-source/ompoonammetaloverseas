@@ -1,7 +1,14 @@
 import { company } from "@/data/company";
 
 export default function GoogleMap({ className = "h-80 sm:h-96" }) {
-  const query = encodeURIComponent(company.address.mapQuery);
+  const { mapCoordinates, mapQuery } = company.address;
+
+  // Coordinates give an exact pin (no geocoding guesswork); the text
+  // address is the fallback if no coordinates are set for the location.
+  const query = mapCoordinates
+    ? `${mapCoordinates.lat},${mapCoordinates.lng}`
+    : encodeURIComponent(mapQuery);
+
   const src = `https://www.google.com/maps?q=${query}&output=embed`;
 
   return (

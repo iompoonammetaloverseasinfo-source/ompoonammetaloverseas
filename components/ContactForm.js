@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Send } from "lucide-react";
 import { company } from "@/data/company";
 import { productFamilies } from "@/data/products";
@@ -9,13 +10,16 @@ const inputClasses =
   "w-full border border-graphite-200 bg-paper px-4 py-3 text-sm text-graphite-800 placeholder:text-graphite-300 focus:border-brass-500 focus:outline-none transition-colors";
 
 export default function ContactForm() {
+  const searchParams = useSearchParams();
+  const productParam = searchParams.get("product");
+
   const [form, setForm] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
     interest: "",
-    message: "",
+    message: productParam ? `I'd like a quote for: ${productParam}\n\nGrade / size / quantity:\nDelivery location:` : "",
   });
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));

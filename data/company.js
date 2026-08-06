@@ -20,7 +20,8 @@ export const company = {
     country: "India",
     full: "Shop No. 5, Plot No. 6 to 8, Ravi Estate, Inside Hemal Estate, Gujarat Bottling Road, B/H Jagannath Estate, Rakhial, Ahmedabad, Gujarat – 380023, India",
     mapQuery:
-      "Ravi Estate, Hemal Estate, Gujarat Bottling Road, Rakhial, Ahmedabad, Gujarat 380023",
+      "Shop No. 17, Ravi estate, Keval kantha road, near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat 380023",
+    mapCoordinates: { lat: 23.0147043, lng: 72.6312331 },
   },
 
   contact: {

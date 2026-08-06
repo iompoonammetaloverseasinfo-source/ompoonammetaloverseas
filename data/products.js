@@ -85,13 +85,16 @@ export const productForms = [
   { name: "Plates (Patta)", note: "Custom thickness, plasma & gas cut to size" },
   { name: "Strips (Patti)", note: "Slit coil to specified width and temper" },
   { name: "Coils", note: "HR / CR coil in stock and re-rollable widths" },
+  { name: "Round Bar", note: "Bright & black bar, peeled and ground rounds" },
+  { name: "Flat", note: "Flat bar to width and thickness on request" },
+  { name: "Angle", note: "Equal & unequal angles for structural framing" },
   { name: "Pipes", note: "Seamless & welded, round and structural sections" },
   { name: "Tubes", note: "Round, square and rectangular, ERW & seamless" },
   { name: "Fittings", note: "Elbows, tees, reducers, stub ends, caps" },
   { name: "Flanges", note: "Weld-neck, slip-on, blind, socket-weld" },
   { name: "Fasteners", note: "Bolts, nuts, studs and washers in SS & alloy" },
+  { name: "Structural Materials", note: "Channels, beams and custom sections" },
   { name: "SS & PVC Furniture", note: "Fabricated furniture components" },
-  { name: "Structural Materials", note: "Angles, channels, beams, flats" },
   { name: "Industrial Hardware", note: "General hardware to project spec" },
 ];
 

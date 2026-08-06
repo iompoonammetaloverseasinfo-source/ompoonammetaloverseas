@@ -1,29 +1,31 @@
 import PageHero from "@/components/PageHero";
 import ProductFamilySection from "@/components/ProductFamilySection";
-import ProductFormsGrid from "@/components/ProductFormsGrid";
+import CatalogCard from "@/components/CatalogCard";
 import IndustriesStrip from "@/components/IndustriesStrip";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { productFamilies } from "@/data/products";
+import { catalog } from "@/data/catalog";
 import { siteUrl } from "@/data/siteConfig";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata = {
   title: "Products — Stainless, Alloy & Non-Ferrous Metal Grades",
   description:
-    "Browse stainless steel grades (201–904L), alloy & special alloys (Inconel, Hastelloy, Monel, Duplex), and non-ferrous metals & ferro alloys stocked by Om Poonam Metal Overseas in sheet, plate, coil, pipe, tube and bar form.",
+    "Browse stainless steel grades (201–904L), alloy & special alloys (Inconel, Hastelloy, Monel, Duplex), and non-ferrous metals & ferro alloys, plus pipes, fittings, flanges, valves and fasteners — stocked by Om Poonam Metal Overseas.",
   alternates: { canonical: `${siteUrl}/products` },
 };
 
 const productJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  itemListElement: productFamilies.map((f, i) => ({
+  itemListElement: catalog.map((f, i) => ({
     "@type": "ListItem",
     position: i + 1,
     name: f.name,
-    description: f.blurb,
+    description: f.description,
+    url: `${siteUrl}/products/${f.slug}`,
   })),
 };
 
@@ -34,7 +36,7 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products"
         title="Every grade we stock, in one place"
-        description="Three material families, twelve common forms. If it's not listed, ask — we source against specification through our supplier network."
+        description="Browse by material grade below, or by product type — pipes, fittings, flanges, valves, fasteners and more — each with its own sub-types."
       />
 
       <section className="section bg-mist-50">
@@ -48,12 +50,16 @@ export default function ProductsPage() {
       <section className="section bg-paper">
         <div className="wrap">
           <SectionHeading
-            eyebrow="Forms & Fabrication"
-            title="Supplied in the form your drawing calls for"
-            description="Cut, slit, or supplied mill-standard — every family above is available across these common forms."
+            eyebrow="Browse by Product Type"
+            title="Pipes, fittings, flanges, valves & more"
+            description="Every category opens into its full range of types — tap through to find the exact one you need."
           />
-          <div className="mt-12">
-            <ProductFormsGrid />
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            {catalog.map((node) => (
+              <ScrollReveal key={node.slug}>
+                <CatalogCard href={`/products/${node.slug}`} node={node} />
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>

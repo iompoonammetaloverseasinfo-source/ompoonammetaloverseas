@@ -2,6 +2,7 @@ import PageHero from "@/components/PageHero";
 import FounderProfile from "@/components/FounderProfile";
 import Timeline from "@/components/Timeline";
 import CredentialsGrid from "@/components/CredentialsGrid";
+import CertificatesGallery from "@/components/CertificatesGallery";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -76,6 +77,14 @@ export default function AboutPage() {
           />
           <div className="mt-12">
             <CredentialsGrid />
+          </div>
+
+          <div className="mt-16 scroll-mt-24" id="certificates">
+            <p className="eyebrow mb-1.5">Tap to view full size</p>
+            <h3 className="font-display text-2xl font-bold uppercase text-graphite-900 mb-6">
+              The Certificates Themselves
+            </h3>
+            <CertificatesGallery />
           </div>
         </div>
       </section>
