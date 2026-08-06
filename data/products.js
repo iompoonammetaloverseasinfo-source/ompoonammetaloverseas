@@ -1,0 +1,107 @@
+// Product catalogue data — material families, grades and forms.
+// Add a grade or a whole family here and the Products page picks it up.
+
+export const productFamilies = [
+  {
+    id: "stainless-steel",
+    code: "SS",
+    name: "Stainless Steel Grades",
+    blurb:
+      "Austenitic, ferritic and martensitic grades stocked in sheet, plate, coil, pipe and bar form for process, structural and architectural use.",
+    grades: [
+      "201",
+      "202",
+      "303",
+      "304",
+      "304L",
+      "309",
+      "310",
+      "310S",
+      "316",
+      "316L",
+      "316Ti",
+      "317",
+      "400 Series",
+      "410",
+      "420",
+      "430",
+      "441",
+      "904L",
+    ],
+  },
+  {
+    id: "alloy-steel",
+    code: "AS",
+    name: "Alloy Steel & Special Alloy Grades",
+    blurb:
+      "High-performance nickel alloys and wear-resistant steels for corrosive, high-temperature and high-abrasion service.",
+    grades: [
+      "Alloy Steel",
+      "Inconel 400",
+      "Inconel 500",
+      "Inconel 600",
+      "Inconel 625",
+      "Inconel 800",
+      "Hastelloy",
+      "Monel",
+      "Duplex Stainless Steel",
+      "Super Duplex Stainless Steel",
+      "Hardox 400",
+      "Hardox 450",
+      "Hardox 500",
+    ],
+  },
+  {
+    id: "non-ferrous",
+    code: "NF",
+    name: "Non-Ferrous Metals & Ferro Alloys",
+    blurb:
+      "Base metals and ferro alloys supplied for foundries, fabricators and re-rollers, sourced and stocked to specification.",
+    grades: [
+      "Copper",
+      "Brass",
+      "Aluminium",
+      "Nickel",
+      "Zinc",
+      "Tin",
+      "Lead",
+      "Bismuth",
+      "Molybdenum",
+      "Ferro Molybdenum (FeMo)",
+      "Silicon",
+      "Copper Phosphorus",
+      "Vanadium",
+      "Cadmium",
+      "Mercury",
+      "Cobalt",
+      "Iron",
+      "Mild Steel (MS)",
+    ],
+  },
+];
+
+export const productForms = [
+  { name: "Sheets", note: "Hot & cold rolled, mill finish to mirror polish" },
+  { name: "Plates (Patta)", note: "Custom thickness, plasma & gas cut to size" },
+  { name: "Strips (Patti)", note: "Slit coil to specified width and temper" },
+  { name: "Coils", note: "HR / CR coil in stock and re-rollable widths" },
+  { name: "Pipes", note: "Seamless & welded, round and structural sections" },
+  { name: "Tubes", note: "Round, square and rectangular, ERW & seamless" },
+  { name: "Fittings", note: "Elbows, tees, reducers, stub ends, caps" },
+  { name: "Flanges", note: "Weld-neck, slip-on, blind, socket-weld" },
+  { name: "Fasteners", note: "Bolts, nuts, studs and washers in SS & alloy" },
+  { name: "SS & PVC Furniture", note: "Fabricated furniture components" },
+  { name: "Structural Materials", note: "Angles, channels, beams, flats" },
+  { name: "Industrial Hardware", note: "General hardware to project spec" },
+];
+
+export const industries = [
+  "Chemical & Petrochemical",
+  "Oil & Gas",
+  "Pharmaceutical",
+  "Food Processing",
+  "Water Treatment",
+  "Fabrication & EPC",
+  "Marine",
+  "Architecture & Furniture",
+];

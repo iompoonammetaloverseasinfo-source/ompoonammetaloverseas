@@ -1,0 +1,104 @@
+/* Self-hosted fonts (npm packages — no external font-CDN calls at runtime) */
+@import "@fontsource/big-shoulders-display/600";
+@import "@fontsource/big-shoulders-display/700";
+@import "@fontsource/big-shoulders-display/800";
+@import "@fontsource/big-shoulders-display/900";
+@import "@fontsource/ibm-plex-sans/400";
+@import "@fontsource/ibm-plex-sans/500";
+@import "@fontsource/ibm-plex-sans/600";
+@import "@fontsource/ibm-plex-sans/700";
+@import "@fontsource/ibm-plex-mono/400";
+@import "@fontsource/ibm-plex-mono/500";
+@import "@fontsource/ibm-plex-mono/600";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Big Shoulders Display", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-paper text-graphite-800 font-body antialiased;
+  font-feature-settings: "ss01" on;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #b8872e;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: #b8872e;
+  color: #12151b;
+}
+
+/* ---- Signature component: the "mill certificate" card ------------------
+   A recurring bordered card with a mono header strip, used for products,
+   certification, founder credentials, and standards reference blocks. It
+   ties the whole site to the world of mill certs / material spec sheets. */
+.spec-card {
+  @apply relative border border-graphite-100 bg-paper;
+}
+.spec-card__strip {
+  @apply flex items-center justify-between border-b border-graphite-100 bg-mist-50 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-graphite-400;
+}
+.spec-card__corner {
+  @apply pointer-events-none absolute h-3 w-3 border-brass-400;
+}
+
+/* eyebrow label style used throughout */
+.eyebrow {
+  @apply font-mono text-xs uppercase tracking-[0.22em] text-brass-600;
+}
+
+/* container */
+.wrap {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+}
+
+/* section rhythm */
+.section {
+  @apply py-16 sm:py-20 lg:py-28;
+}
+
+/* faint blueprint-style grid backdrop — dark lines for light sections */
+.grid-backdrop {
+  background-image: linear-gradient(to right, rgba(18, 21, 27, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 21, 27, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* same pattern with light lines, for use on graphite/dark sections */
+.grid-backdrop-dark {
+  background-image: linear-gradient(to right, rgba(245, 247, 249, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 247, 249, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* hairline divider */
+.hairline {
+  @apply h-px w-full bg-graphite-100;
+}
