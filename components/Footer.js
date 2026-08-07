@@ -78,6 +78,22 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      <div className="border-t border-graphite-800">
+        <div className="wrap py-4 flex justify-center">
+          <p className="text-xs text-graphite-500">
+            Designed &amp; Developed by{" "}
+            <a
+              href="https://roshpixel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-graphite-300 hover:text-brass-400 transition-colors"
+            >
+              RoshPixel
+            </a>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
