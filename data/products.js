@@ -16,6 +16,7 @@ export const productFamilies = [
       "304L",
       "309",
       "310",
+      "321",
       "310S",
       "316",
       "316L",
@@ -36,7 +37,11 @@ export const productFamilies = [
     blurb:
       "High-performance nickel alloys and wear-resistant steels for corrosive, high-temperature and high-abrasion service.",
     grades: [
-      "Alloy Steel",
+      "Alloy Steel (P5)",
+      "Alloy Steel (P9)",
+      "Alloy Steel (P11)",
+      "Alloy Steel (P22)",
+      "Alloy Steel (P91)",
       "Inconel 400",
       "Inconel 500",
       "Inconel 600",
@@ -44,8 +49,9 @@ export const productFamilies = [
       "Inconel 800",
       "Hastelloy",
       "Monel",
-      "Duplex Stainless Steel",
-      "Super Duplex Stainless Steel",
+      "Duplex 2205",
+      "Super Duplex 2507",
+      "Titanium",
       "Hardox 400",
       "Hardox 450",
       "Hardox 500",
@@ -59,6 +65,7 @@ export const productFamilies = [
       "Base metals and ferro alloys supplied for foundries, fabricators and re-rollers, sourced and stocked to specification.",
     grades: [
       "Copper",
+      "Copper Nickel",
       "Brass",
       "Aluminium",
       "Nickel",
@@ -108,3 +115,21 @@ export const industries = [
   "Marine",
   "Architecture & Furniture",
 ];
+
+// Expands a short grade-family tag (as used in data/catalog.js `grades`
+// arrays, e.g. "Stainless Steel") into its actual list of specific grade
+// numbers from the families above. Falls back to the tag itself for
+// standalone tags that aren't one of the three families (e.g. "Titanium"
+// used on its own, "Carbon Steel", "Mild Steel"). Used to show real grade
+// numbers on category pages instead of just the family name.
+const TAG_TO_FAMILY_ID = {
+  "Stainless Steel": "stainless-steel",
+  "Alloy Steel": "alloy-steel",
+  "Non-Ferrous": "non-ferrous",
+};
+
+export function expandGradeTag(tag) {
+  const familyId = TAG_TO_FAMILY_ID[tag];
+  const family = familyId && productFamilies.find((f) => f.id === familyId);
+  return family ? family.grades : [tag];
+}

@@ -1,17 +1,16 @@
+"use client";
+
+import { useId } from "react";
+
 // Original line-art icon set for the product catalogue — simplified
 // engineering/P&ID-style symbols (the same convention used on real
 // piping drawings for valves and fittings), not photography. This keeps
 // every icon copyright-safe and on-brand with the site's "spec sheet"
 // visual language. Swap in a real product photo any time by setting an
 // `image` field on a catalog node — see data/catalog.js.
-
-const common = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2.4,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-};
+//
+// Rendered with a brushed-brass gradient stroke + soft shadow so it reads
+// as a considered product graphic rather than a flat outline icon.
 
 const paths = {
   pipe: (
@@ -72,14 +71,14 @@ const paths = {
     <>
       <circle cx="24" cy="24" r="17" />
       <circle cx="24" cy="24" r="7" />
-      <circle cx="24" cy="9" r="1.6" fill="currentColor" />
-      <circle cx="24" cy="39" r="1.6" fill="currentColor" />
-      <circle cx="9" cy="24" r="1.6" fill="currentColor" />
-      <circle cx="39" cy="24" r="1.6" fill="currentColor" />
-      <circle cx="13" cy="13" r="1.6" fill="currentColor" />
-      <circle cx="35" cy="35" r="1.6" fill="currentColor" />
-      <circle cx="35" cy="13" r="1.6" fill="currentColor" />
-      <circle cx="13" cy="35" r="1.6" fill="currentColor" />
+      <circle cx="24" cy="9" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="24" cy="39" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="9" cy="24" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="39" cy="24" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="13" cy="13" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="35" cy="35" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="35" cy="13" r="1.8" fill="currentColor" stroke="none" />
+      <circle cx="13" cy="35" r="1.8" fill="currentColor" stroke="none" />
     </>
   ),
   "ball-valve": (
@@ -184,11 +183,7 @@ const paths = {
       <path d="M36 40l6-8V12" />
     </>
   ),
-  strip: (
-    <>
-      <rect x="5" y="19" width="38" height="10" rx="1" />
-    </>
-  ),
+  strip: <rect x="5" y="19" width="38" height="10" rx="1" />,
   coil: (
     <>
       <path d="M8 24a16 9 0 1 0 32 0 16 9 0 1 0-32 0" />
@@ -215,15 +210,40 @@ const paths = {
     <>
       <path d="M31 8a9 9 0 0 0-11.5 11.5L8 31v6h6l1.5-1.5" />
       <path d="M17 20l2 2" />
-      <circle cx="33" cy="15" r="1.6" fill="currentColor" />
+      <circle cx="33" cy="15" r="1.8" fill="currentColor" stroke="none" />
     </>
   ),
 };
 
-export default function ProductIcon({ type, className }) {
+export default function ProductIcon({ type, className, tone = "brass" }) {
+  const uid = useId();
+  const gradId = `pi-grad-${uid}`;
   const path = paths[type] || paths["circle-blank"];
+
+  const stops =
+    tone === "brass"
+      ? ["#EACF8C", "#B8872E", "#78561B"]
+      : ["#8D94A1", "#4A505E", "#262A34"];
+
   return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true" {...common}>
+    <svg
+      viewBox="0 0 48 48"
+      className={className}
+      aria-hidden="true"
+      fill="none"
+      stroke={`url(#${gradId})`}
+      strokeWidth={2.4}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ color: stops[1] }}
+    >
+      <defs>
+        <linearGradient id={gradId} x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor={stops[0]} />
+          <stop offset="55%" stopColor={stops[1]} />
+          <stop offset="100%" stopColor={stops[2]} />
+        </linearGradient>
+      </defs>
       {path}
     </svg>
   );

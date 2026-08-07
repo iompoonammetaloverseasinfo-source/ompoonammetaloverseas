@@ -68,6 +68,60 @@ export const materialSpecs = [
     title: "Stainless & Heat-Resisting Steel Plate, Sheet and Strip",
     summary: "The governing material specification for the flat stainless products we stock and supply.",
   },
+  {
+    code: "ASTM A106 / A53",
+    title: "Carbon Steel Pipe for High-Temperature / General Service",
+    summary:
+      "The two most common carbon steel pipe specifications — A106 for seamless pipe in higher-temperature process service, A53 covering both welded and seamless for general piping.",
+  },
+  {
+    code: "ASTM A333",
+    title: "Seamless & Welded Steel Pipe for Low-Temperature Service",
+    summary:
+      "Covers pipe intended to stay tough and crack-resistant at sub-zero service temperatures, common in cryogenic and refrigeration lines.",
+  },
+  {
+    code: "ASTM A335",
+    title: "Seamless Ferritic Alloy Steel Pipe for High-Temperature Service",
+    summary:
+      "The specification behind our P5 / P9 / P11 / P22 / P91 alloy pipe grades, used across high-temperature process and power piping.",
+  },
+  {
+    code: "ASTM A213",
+    title: "Seamless Ferritic Alloy Steel Boiler & Heat-Exchanger Tube",
+    summary:
+      "The tube-form companion to A335 — covers our T9 / T11 / T22 / T91 alloy tube grades for boiler and heat-exchanger service.",
+  },
+  {
+    code: "ASTM A210",
+    title: "Seamless Carbon Steel Boiler & Superheater Tube",
+    summary: "The carbon steel specification behind the boiler tube we stock, for medium and high-pressure boiler applications.",
+  },
+  {
+    code: "ASTM A999",
+    title: "General Requirements for Alloy & Stainless Steel Pipe",
+    summary: "The umbrella specification setting common requirements — tolerances, testing, marking — that grade-specific pipe standards like A312 and A790 build on.",
+  },
+  {
+    code: "ASTM A790 / A928",
+    title: "Duplex & Super Duplex Stainless Pipe",
+    summary: "Covers seamless and welded duplex/super duplex pipe — the material specification behind our Duplex 2205 and Super Duplex 2507 stock.",
+  },
+  {
+    code: "ASTM A409",
+    title: "Welded Large-Diameter Austenitic Steel Pipe",
+    summary: "Covers large-diameter, lighter-wall austenitic stainless pipe for corrosive or high-temperature service.",
+  },
+  {
+    code: "ASTM A694",
+    title: "Carbon & Alloy Steel Forgings for Flanges, Fittings & Valves",
+    summary: "Material specification for high-pressure transmission-service forgings, relevant to our flange and forged fitting range.",
+  },
+  {
+    code: "ASTM A984 / API 5L",
+    title: "Line Pipe",
+    summary: "Governs black, plain-end steel line pipe for oil, gas and water transmission — the specification family behind our API 5L stock.",
+  },
 ];
 
 // Common NPS-to-OD reference (fixed by standard, independent of schedule).

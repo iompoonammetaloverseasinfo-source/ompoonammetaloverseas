@@ -36,13 +36,59 @@ export const catalog = [
     icon: "pipe",
     description:
       "Seamless and welded pipe, plus square, rectangular and round tube, in stock lengths or cut to size.",
+    // Optional extended content shown on this category's page, below its
+    // product grid. Add the same field to any other node in this file to
+    // give it a similar "learn the basics" section — entirely original
+    // writing, not tied to any particular grade or type.
+    guide: [
+      {
+        heading: "Pipe or Tube — What's the Difference?",
+        body: "The two words get used interchangeably, but they're not quite the same thing. A pipe is defined by its job: a round, hollow section built to carry a fluid or gas, sized by nominal bore and schedule rather than an exact outside diameter. A tube is defined by its shape instead — round, square or rectangular — sized to a precise outside diameter and wall thickness, and used as often for structural or mechanical work as for carrying anything at all.",
+      },
+      {
+        heading: "Seamless or Welded (ERW) — Which Do You Need?",
+        body: "Seamless pipe starts as a solid billet, pierced and drawn into a hollow section with no join anywhere along its length — the usual choice where pressure rating and consistency matter most. Welded (ERW) pipe is made the other way round: flat steel strip is rolled into a cylinder and the seam fused shut along its length. That weld is a controlled, tested joint, not a weak point by accident, which is what makes ERW pipe the more economical option for the many jobs that don't call for seamless-grade pressure ratings.",
+      },
+      {
+        heading: "How Pipe Sizing Actually Works",
+        body: "Every pipe we quote comes down to two numbers: outside diameter and wall thickness. Subtract the wall thickness twice from the outside diameter and you're left with the bore — the figure that actually determines how much the pipe can carry. It's a simple calculation, but it's the first thing we check against your requirement before confirming stock and quoting a price.",
+      },
+    ],
     children: [
       {
         slug: "seamless-pipes",
         name: "Seamless Pipes",
         icon: "pipe",
         description: "No weld seam — for higher-pressure and critical process lines.",
-        grades: ["Stainless Steel", "Alloy Steel"],
+        grades: ["Stainless Steel", "Alloy Steel", "Titanium"],
+      },
+      {
+        slug: "api-5l-line-pipe",
+        name: "API 5L Line Pipe",
+        icon: "pipe",
+        description: "Line pipe to API 5L, grades B through X70, for oil, gas and water transmission.",
+        grades: ["Carbon Steel"],
+      },
+      {
+        slug: "large-diameter-heavy-wall-pipe",
+        name: "Large Diameter & Heavy Wall Pipe",
+        icon: "pipe",
+        description: "Thick-wall pipe for high-pressure and high-temperature service, including hot-finished welded tube.",
+        grades: ["Carbon Steel", "Alloy Steel", "Stainless Steel"],
+      },
+      {
+        slug: "sour-service-pipe",
+        name: "Sour Service Pipe",
+        icon: "pipe",
+        description: "Pipe rated for H2S-containing (sour) oil and gas environments.",
+        grades: ["Carbon Steel", "Alloy Steel"],
+      },
+      {
+        slug: "drill-pipe",
+        name: "Drill Pipe",
+        icon: "pipe",
+        description: "Oilfield drill pipe for exploration and drilling applications.",
+        grades: ["Alloy Steel"],
       },
       {
         slug: "welded-pipes",
@@ -50,6 +96,13 @@ export const catalog = [
         icon: "pipe",
         description: "Electric-resistance-welded pipe for general process and structural use.",
         grades: ["Stainless Steel", "Non-Ferrous"],
+      },
+      {
+        slug: "boiler-tube",
+        name: "Boiler Tube",
+        icon: "pipe",
+        description: "Heat-exchanger and boiler-grade tube for high-temperature service.",
+        grades: ["Alloy Steel", "Carbon Steel"],
       },
       {
         slug: "square-rectangular-tubes",
@@ -63,6 +116,27 @@ export const catalog = [
         name: "Round Tubes",
         icon: "pipe",
         description: "Thin- to medium-wall round tube for instrumentation and fabrication.",
+        grades: ["Stainless Steel"],
+      },
+      {
+        slug: "capillary-tube",
+        name: "Capillary Tube",
+        icon: "pipe",
+        description: "Very fine-bore precision tube for instrumentation and control lines.",
+        grades: ["Stainless Steel"],
+      },
+      {
+        slug: "coiled-tubing",
+        name: "Coiled Tubing",
+        icon: "coil",
+        description: "Long-length tube supplied coiled rather than in straight lengths.",
+        grades: ["Stainless Steel"],
+      },
+      {
+        slug: "sanitary-tube",
+        name: "Sanitary Tube",
+        icon: "pipe",
+        description: "Polished, hygienic-finish tube for food, dairy and pharmaceutical use.",
         grades: ["Stainless Steel"],
       },
     ],
@@ -160,6 +234,42 @@ export const catalog = [
           },
         ],
       },
+      {
+        slug: "outlet-fittings",
+        name: "Outlet Fittings (Olets)",
+        icon: "coupling",
+        description: "Forged branch-outlet fittings welded directly onto a run pipe — an alternative to a full tee where the branch is smaller than the main line.",
+        children: [
+          {
+            slug: "weldolet",
+            name: "Weldolet",
+            icon: "tee",
+            description: "Full-strength butt-weld branch outlet for the main run of pipe.",
+            grades: ["Stainless Steel", "Alloy Steel"],
+          },
+          {
+            slug: "sockolet",
+            name: "Sockolet",
+            icon: "coupling",
+            description: "Socket-weld branch outlet for smaller-bore connections.",
+            grades: ["Stainless Steel"],
+          },
+          {
+            slug: "threadolet",
+            name: "Threadolet",
+            icon: "coupling",
+            description: "Threaded branch outlet where a welded connection isn't practical.",
+            grades: ["Stainless Steel"],
+          },
+          {
+            slug: "elbolet",
+            name: "Elbolet",
+            icon: "elbow",
+            description: "Branch outlet designed to attach directly onto an elbow.",
+            grades: ["Stainless Steel"],
+          },
+        ],
+      },
     ],
   },
   {
@@ -176,6 +286,8 @@ export const catalog = [
       { slug: "threaded-flange", name: "Threaded Flange", icon: "flange", description: "Screwed connection where welding isn't practical.", grades: ["Stainless Steel"] },
       { slug: "lap-joint-flange", name: "Lap Joint Flange", icon: "flange", description: "Used with a stub end — rotates freely for bolt-hole alignment.", grades: ["Stainless Steel"] },
       { slug: "spectacle-blind", name: "Spectacle Blind", icon: "flange", description: "Figure-8 isolation plate for positive line shutoff.", grades: ["Stainless Steel", "Alloy Steel"] },
+      { slug: "ring-type-joint-flange", name: "Ring Type Joint (RTJ) Flange", icon: "flange", description: "Metal ring-gasket seal for high-pressure, high-temperature service.", grades: ["Stainless Steel", "Alloy Steel"] },
+      { slug: "orifice-flange", name: "Orifice Flange", icon: "flange", description: "Paired flanges with tapped holes for orifice-plate flow metering.", grades: ["Stainless Steel", "Alloy Steel"] },
     ],
   },
   {
@@ -213,8 +325,8 @@ export const catalog = [
     icon: "sheet",
     description: "Flat-rolled stainless and non-ferrous material in mill or custom-cut sizes.",
     children: [
-      { slug: "sheets", name: "Sheets", icon: "sheet", description: "Hot- and cold-rolled, 2B, BA, No. 4 and mirror finishes.", grades: ["Stainless Steel", "Non-Ferrous"] },
-      { slug: "plates", name: "Plates (Patta)", icon: "sheet", description: "Heavier gauge, plasma and gas cut to your dimensions.", grades: ["Stainless Steel", "Alloy Steel"] },
+      { slug: "sheets", name: "Sheets", icon: "sheet", description: "Hot- and cold-rolled, 2B, BA, No. 4 and mirror finishes.", grades: ["Stainless Steel", "Titanium", "Non-Ferrous"] },
+      { slug: "plates", name: "Plates (Patta)", icon: "sheet", description: "Heavier gauge, plasma and gas cut to your dimensions.", grades: ["Stainless Steel", "Alloy Steel", "Titanium", "Non-Ferrous"] },
       { slug: "strips", name: "Strips (Patti)", icon: "strip", description: "Slit coil to a specified width and temper.", grades: ["Stainless Steel"] },
       { slug: "coils", name: "Coils", icon: "coil", description: "Hot- and cold-rolled coil, stocked and re-rollable widths.", grades: ["Stainless Steel", "Non-Ferrous"] },
       { slug: "circles", name: "Circles", icon: "circle-blank", description: "Blanked circles for utensil, tank-head and fabrication use.", grades: ["Stainless Steel"] },
@@ -240,6 +352,7 @@ export const catalog = [
     children: [
       { slug: "ss-pvc-furniture", name: "SS & PVC Furniture", icon: "hardware", description: "Fabricated furniture components and fittings." },
       { slug: "industrial-hardware", name: "Industrial Hardware", icon: "hardware", description: "General hardware supplied to project specification." },
+      { slug: "welding-consumables", name: "Welding Electrodes & Rod", icon: "hardware", description: "Welding rod and electrodes matched to stainless, alloy and carbon steel grades.", grades: ["Stainless Steel", "Alloy Steel"] },
     ],
   },
 ];
@@ -257,6 +370,14 @@ export function flattenCatalog(nodes = catalog, path = [], parents = []) {
       : [];
     return [entry, ...childEntries];
   });
+}
+
+// Counts leaf product types under a node (or the whole catalog) — used
+// to show real, accurate "N types" figures anywhere on the site, that
+// stay correct automatically as products are added to this file.
+export function countLeafTypes(node) {
+  if (!node.children || node.children.length === 0) return 1;
+  return node.children.reduce((sum, child) => sum + countLeafTypes(child), 0);
 }
 
 // Finds a node (and its ancestor chain) by URL path segments.

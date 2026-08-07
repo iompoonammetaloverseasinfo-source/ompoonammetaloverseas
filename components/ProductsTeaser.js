@@ -4,6 +4,14 @@ import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
 import { productFamilies } from "@/data/products";
 
+// Varied per-card so three cards in a row don't all read "View all" —
+// small touch, reads less templated.
+const ctaLabels = {
+  "stainless-steel": "Check full grade list",
+  "alloy-steel": "See all alloys",
+  "non-ferrous": "Browse the range",
+};
+
 export default function ProductsTeaser() {
   return (
     <section className="section bg-mist-50">
@@ -57,7 +65,7 @@ export default function ProductsTeaser() {
                     href="/products"
                     className="mt-auto pt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-graphite-800 hover:text-brass-600 transition-colors"
                   >
-                    View all
+                    {ctaLabels[family.id] || "View all"}
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </div>

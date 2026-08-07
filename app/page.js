@@ -1,7 +1,11 @@
 import Hero from "@/components/Hero";
+import RotatingBanner from "@/components/RotatingBanner";
 import StatsStrip from "@/components/StatsStrip";
 import ProductsTeaser from "@/components/ProductsTeaser";
+import CatalogScale from "@/components/CatalogScale";
 import CertificateShowcase from "@/components/CertificateShowcase";
+import HowWeWork from "@/components/HowWeWork";
+import GuideCallout from "@/components/GuideCallout";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import VisitUs from "@/components/VisitUs";
 import CTASection from "@/components/CTASection";
@@ -17,9 +21,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <RotatingBanner />
       <StatsStrip />
       <ProductsTeaser />
+      <CatalogScale />
       <CertificateShowcase />
+      <HowWeWork />
+      <GuideCallout />
       <WhyChooseUs />
       <VisitUs />
       <CTASection />

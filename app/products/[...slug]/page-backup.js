@@ -7,7 +7,6 @@ import CatalogCard from "@/components/CatalogCard";
 import ProductIcon from "@/components/ProductIcon";
 import IconTile from "@/components/IconTile";
 import SectionHeading from "@/components/SectionHeading";
-import GradesAvailable from "@/components/GradesAvailable";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { catalog, flattenCatalog, findCatalogNode } from "@/data/catalog";
@@ -106,10 +105,6 @@ export default function CatalogNodePage({ params }) {
           </div>
         </section>
       ) : null}
-
-      {hasChildren && (
-        <GradesAvailable gradeTagLists={node.children.map((c) => c.grades || [])} />
-      )}
 
       {node.guide && (
         <section className="section bg-paper">
