@@ -2,46 +2,90 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Send } from "lucide-react";
+import { CheckCircle2, Loader2, Send, TriangleAlert } from "lucide-react";
 import { company } from "@/data/company";
 import { productFamilies } from "@/data/products";
 
 const inputClasses =
-  "w-full border border-graphite-200 bg-paper px-4 py-3 text-sm text-graphite-800 placeholder:text-graphite-300 focus:border-brass-500 focus:outline-none transition-colors";
+  "w-full border border-graphite-200 bg-paper px-4 py-3 text-sm text-graphite-800 placeholder:text-graphite-300 focus:border-brass-500 focus:outline-none transition-colors disabled:opacity-60";
 
+// idle | submitting | success | error
 export default function ContactForm() {
   const searchParams = useSearchParams();
   const productParam = searchParams.get("product");
 
+  const [status, setStatus] = useState("idle");
   const [form, setForm] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
     interest: "",
-    message: productParam ? `I'd like a quote for: ${productParam}\n\nGrade / size / quantity:\nDelivery location:` : "",
+    message: productParam
+      ? `I'd like a quote for: ${productParam}\n\nGrade / size / quantity:\nDelivery location:`
+      : "",
   });
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `Website enquiry — ${form.name || "New enquiry"}`
-    );
-    const bodyLines = [
-      `Name: ${form.name}`,
-      `Company: ${form.company}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Product interest: ${form.interest || "Not specified"}`,
-      "",
-      "Message:",
-      form.message,
-    ];
-    const body = encodeURIComponent(bodyLines.join("\n"));
-    window.location.href = `mailto:${company.contact.email}?subject=${subject}&body=${body}`;
+
+    if (!company.contact.web3formsKey) {
+      // Not configured yet — see the comment in data/company.js.
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: company.contact.web3formsKey,
+          subject: `Website enquiry — ${form.name || "New enquiry"}`,
+          from_name: form.name || "Website enquiry",
+          name: form.name,
+          company: form.company,
+          email: form.email,
+          phone: form.phone,
+          product_interest: form.interest || "Not specified",
+          message: form.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
+      setStatus("success");
+      setForm({ name: "", company: "", email: "", phone: "", interest: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
   };
+
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center gap-3 py-10 text-center">
+        <CheckCircle2 className="h-10 w-10 text-brass-500" />
+        <h3 className="font-display text-2xl font-bold uppercase text-graphite-900">
+          Enquiry sent
+        </h3>
+        <p className="max-w-sm text-sm text-graphite-500">
+          Thanks — we've received your requirement and will get back to you the
+          same working day. You can also reach us directly at{" "}
+          {company.contact.phoneDisplay}.
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-2 text-sm font-semibold text-brass-600 hover:text-brass-700"
+        >
+          Send another enquiry
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -53,6 +97,7 @@ export default function ContactForm() {
           <input
             id="name"
             required
+            disabled={status === "submitting"}
             value={form.name}
             onChange={update("name")}
             className={inputClasses}
@@ -65,6 +110,7 @@ export default function ContactForm() {
           </label>
           <input
             id="companyName"
+            disabled={status === "submitting"}
             value={form.company}
             onChange={update("company")}
             className={inputClasses}
@@ -82,6 +128,7 @@ export default function ContactForm() {
             id="email"
             type="email"
             required
+            disabled={status === "submitting"}
             value={form.email}
             onChange={update("email")}
             className={inputClasses}
@@ -95,6 +142,7 @@ export default function ContactForm() {
           <input
             id="phone"
             type="tel"
+            disabled={status === "submitting"}
             value={form.phone}
             onChange={update("phone")}
             className={inputClasses}
@@ -109,6 +157,7 @@ export default function ContactForm() {
         </label>
         <select
           id="interest"
+          disabled={status === "submitting"}
           value={form.interest}
           onChange={update("interest")}
           className={`${inputClasses} appearance-none`}
@@ -131,6 +180,7 @@ export default function ContactForm() {
           id="message"
           required
           rows={5}
+          disabled={status === "submitting"}
           value={form.message}
           onChange={update("message")}
           className={inputClasses}
@@ -140,15 +190,40 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex items-center gap-2 bg-brass-500 hover:bg-brass-400 text-graphite-900 font-semibold px-6 py-3.5 transition-colors"
+        disabled={status === "submitting"}
+        className="inline-flex items-center gap-2 bg-brass-500 hover:bg-brass-400 disabled:hover:bg-brass-500 disabled:opacity-70 text-graphite-900 font-semibold px-6 py-3.5 transition-colors"
       >
-        Send Enquiry
-        <Send className="h-4 w-4" />
+        {status === "submitting" ? (
+          <>
+            Sending
+            <Loader2 className="h-4 w-4 animate-spin" />
+          </>
+        ) : (
+          <>
+            Send Enquiry
+            <Send className="h-4 w-4" />
+          </>
+        )}
       </button>
-      <p className="text-xs text-graphite-400">
-        This opens your email app with the details filled in, addressed to{" "}
-        {company.contact.email}.
-      </p>
+
+      {status === "error" && (
+        <div className="flex gap-2.5 border border-red-200 bg-red-50 p-4">
+          <TriangleAlert className="h-4 w-4 shrink-0 mt-0.5 text-red-600" />
+          <p className="text-xs text-red-700 leading-relaxed">
+            {company.contact.web3formsKey
+              ? "Something went wrong sending that — please try again, or reach us directly at "
+              : "The enquiry form isn't fully set up yet — please reach us directly at "}
+            <a href={`tel:${company.contact.phoneE164}`} className="font-semibold underline">
+              {company.contact.phoneDisplay}
+            </a>{" "}
+            or{" "}
+            <a href={`mailto:${company.contact.email}`} className="font-semibold underline">
+              {company.contact.email}
+            </a>
+            .
+          </p>
+        </div>
+      )}
     </form>
   );
 }

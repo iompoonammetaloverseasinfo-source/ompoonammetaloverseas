@@ -11,16 +11,20 @@ export const company = {
   groupConcern: "Vardhman Steel India",
 
   address: {
-    line1: "Shop No. 5, Plot No. 6 to 8, Ravi Estate",
-    line2: "Inside Hemal Estate, Gujarat Bottling Road",
-    line3: "B/H Jagannath Estate, Rakhial",
+    line1: "Shop No. 17, Ravi Estate",
+    line2: "Keval Kantha Road, Near Gujarat Bottling Road",
+    line3: "Industrial Area, Rakhial",
     city: "Ahmedabad",
     state: "Gujarat",
     pin: "380023",
     country: "India",
-    full: "Shop No. 5, Plot No. 6 to 8, Ravi Estate, Inside Hemal Estate, Gujarat Bottling Road, B/H Jagannath Estate, Rakhial, Ahmedabad, Gujarat – 380023, India",
+    full: "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat – 380023, India",
     mapQuery:
-      "Shop No. 17, Ravi estate, Keval kantha road, near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat 380023",
+      "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat 380023",
+    // Exact pin, from the location shared directly (resolves to the same
+    // small cluster of Keval Kantha Road businesses as the address above).
+    // Takes priority over mapQuery in components/GoogleMap.js — remove
+    // this object if you ever want to fall back to the text-address pin.
     mapCoordinates: { lat: 23.0147043, lng: 72.6312331 },
   },
 
@@ -29,6 +33,12 @@ export const company = {
     phoneE164: "+919784979607",
     whatsapp: "919784979607",
     email: "exportompmo@gmail.com",
+    // Makes the contact form actually send email instead of just opening
+    // the visitor's own email app. Free, no account needed:
+    //   1. Go to https://web3forms.com
+    //   2. Enter this inbox's email address, click "Create Access Key"
+    //   3. Copy the key from the email it sends you, paste it below
+    web3formsKey: "1042bd3b-0877-43e6-af06-2c8ba9e15c92",
   },
 
   registrations: {
