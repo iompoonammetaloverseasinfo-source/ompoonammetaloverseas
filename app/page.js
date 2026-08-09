@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import RotatingBanner from "@/components/RotatingBanner";
+import ProductShowcase from "@/components/ProductShowcase";
 import StatsStrip from "@/components/StatsStrip";
 import ProductsTeaser from "@/components/ProductsTeaser";
 import CatalogScale from "@/components/CatalogScale";
@@ -22,6 +23,7 @@ export default function HomePage() {
     <>
       <Hero />
       <RotatingBanner />
+      <ProductShowcase />
       <StatsStrip />
       <ProductsTeaser />
       <CatalogScale />

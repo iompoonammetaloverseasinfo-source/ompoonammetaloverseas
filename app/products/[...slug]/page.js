@@ -108,7 +108,10 @@ export default function CatalogNodePage({ params }) {
       ) : null}
 
       {hasChildren && (
-        <GradesAvailable gradeTagLists={node.children.map((c) => c.grades || [])} />
+        <GradesAvailable
+          gradeTagLists={node.children.map((c) => c.grades || [])}
+          categoryName={node.name}
+        />
       )}
 
       {node.guide && (
