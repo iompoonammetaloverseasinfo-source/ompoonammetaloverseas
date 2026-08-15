@@ -11,14 +11,14 @@ export const company = {
   groupConcern: "Vardhman Steel India",
 
   address: {
-    line1: "Shop No. 17, Ravi Estate",
+    line1: "Shop No. 5, Ravi Estate",
     line2: "Keval Kantha Road, Near Gujarat Bottling Road",
     line3: "Industrial Area, Rakhial",
     city: "Ahmedabad",
     state: "Gujarat",
     pin: "380023",
     country: "India",
-    full: "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat – 380023, India",
+    full: "Shop No. 5, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat – 380023, India",
     mapQuery:
       "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat 380023",
     // Exact pin, from the location shared directly (resolves to the same

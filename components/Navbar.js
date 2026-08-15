@@ -60,13 +60,13 @@ function ProductsDropdownPortal({ anchorRect, onClose }) {
           top: anchorRect.bottom + 12,
           left: anchorRect.left,
         }}
-        className="z-[999] w-64 border border-graphite-700 bg-graphite-900 shadow-2xl"
+        className="z-[999] w-64 border border-graphite-200 bg-paper shadow-2xl"
       >
         {productLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="block border-b border-graphite-800 px-4 py-3 text-sm text-graphite-200 last:border-b-0 hover:bg-graphite-800 hover:text-brass-400"
+            className="block border-b border-graphite-100 px-4 py-3 text-sm text-graphite-700 last:border-b-0 hover:bg-mist-50 hover:text-brass-700"
           >
             {link.label}
           </Link>
@@ -119,25 +119,21 @@ export default function Navbar() {
   return (
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled || open
-          ? "bg-graphite-900/95 backdrop-blur border-b border-graphite-700/60"
-          : "bg-transparent"
+        "fixed inset-x-0 top-0 z-50 bg-paper/95 backdrop-blur transition-shadow duration-300",
+        scrolled || open ? "shadow-sm border-b border-graphite-100" : "border-b border-transparent"
       )}
     >
-      <div className="wrap flex h-16 items-center justify-between overflow-hidden">
+      <div className="wrap flex h-16 items-center gap-6">
+
+        {/* Company Logo / Name */}
         <Link
           href="/"
-          className="flex min-w-0 shrink items-center gap-2 text-paper"
+          className="flex shrink-0 items-center text-graphite-900"
           aria-label={`${siteConfig.name} — home`}
         >
-          <span className="hidden sm:inline whitespace-nowrap font-display text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tight">
+          <span className="whitespace-nowrap font-display text-xl lg:text-2xl font-bold uppercase leading-none tracking-tight">
             Om Poonam Metal
-            <span className="text-brass-400"> Overseas</span>
-          </span>
-          <span className="sm:hidden whitespace-nowrap font-display text-xl font-bold uppercase leading-none tracking-tight">
-            Om Poonam Metal
-            <span className="text-brass-400"> Overseas</span>
+            <span className="text-brass-600"> Overseas</span>
           </span>
         </Link>
 
@@ -156,7 +152,7 @@ export default function Navbar() {
                   aria-expanded={!!dropdownRect}
                   className={clsx(
                     "flex items-center gap-1 font-mono text-[13px] uppercase tracking-[0.12em] transition-colors",
-                    active ? "text-brass-400" : "text-graphite-200 hover:text-paper"
+                    active ? "text-brass-600" : "text-graphite-600 hover:text-graphite-900"
                   )}
                 >
                   {p.label}
@@ -173,7 +169,7 @@ export default function Navbar() {
                 href={p.path}
                 className={clsx(
                   "font-mono text-[13px] uppercase tracking-[0.12em] transition-colors",
-                  active ? "text-brass-400" : "text-graphite-200 hover:text-paper"
+                  active ? "text-brass-600" : "text-graphite-600 hover:text-graphite-900"
                 )}
               >
                 {p.label}
@@ -185,14 +181,14 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-5">
           <a
             href={`tel:${company.contact.phoneE164}`}
-            className="flex items-center gap-2 text-sm text-graphite-200 hover:text-paper transition-colors"
+            className="flex items-center gap-2 text-sm text-graphite-600 hover:text-graphite-900 transition-colors"
           >
-            <Phone className="h-3.5 w-3.5 text-brass-400" />
+            <Phone className="h-3.5 w-3.5 text-brass-600" />
             {company.contact.phoneDisplay}
           </a>
           <Link
             href="/contact"
-            className="inline-flex items-center bg-brass-500 hover:bg-brass-400 text-graphite-900 font-semibold text-sm px-5 py-2.5 transition-colors"
+            className="inline-flex items-center bg-brass-500 hover:bg-brass-600 text-paper font-semibold text-sm px-5 py-2.5 transition-colors"
           >
             Get a Quote
           </Link>
@@ -202,7 +198,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center text-paper"
+          className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center text-graphite-900"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -218,7 +214,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden border-t border-graphite-700/60 bg-graphite-900 max-h-[calc(100vh-64px)] overflow-y-auto"
+            className="lg:hidden overflow-hidden border-t border-graphite-100 bg-paper max-h-[calc(100vh-64px)] overflow-y-auto"
             aria-label="Mobile"
           >
             <div className="wrap flex flex-col py-4">
@@ -227,14 +223,14 @@ export default function Navbar() {
 
                 if (p.path === "/products") {
                   return (
-                    <div key={p.path} className="border-b border-graphite-800">
+                    <div key={p.path} className="border-b border-graphite-100">
                       <button
                         type="button"
                         onClick={() => setMobileProductsOpen((v) => !v)}
                         aria-expanded={mobileProductsOpen}
                         className={clsx(
                           "flex w-full items-center justify-between py-3 font-display text-2xl font-semibold uppercase tracking-tight",
-                          active ? "text-brass-400" : "text-paper"
+                          active ? "text-brass-600" : "text-graphite-900"
                         )}
                       >
                         {p.label}
@@ -258,7 +254,7 @@ export default function Navbar() {
                               <Link
                                 key={link.href}
                                 href={link.href}
-                                className="block py-2.5 font-mono text-sm uppercase tracking-wide text-graphite-300"
+                                className="block py-2.5 font-mono text-sm uppercase tracking-wide text-graphite-500"
                               >
                                 {link.label}
                               </Link>
@@ -275,8 +271,8 @@ export default function Navbar() {
                     key={p.path}
                     href={p.path}
                     className={clsx(
-                      "py-3 font-display text-2xl font-semibold uppercase tracking-tight border-b border-graphite-800",
-                      active ? "text-brass-400" : "text-paper"
+                      "py-3 font-display text-2xl font-semibold uppercase tracking-tight border-b border-graphite-100",
+                      active ? "text-brass-600" : "text-graphite-900"
                     )}
                   >
                     {p.label}
@@ -285,14 +281,14 @@ export default function Navbar() {
               })}
               <a
                 href={`tel:${company.contact.phoneE164}`}
-                className="mt-5 flex items-center gap-2 text-graphite-200"
+                className="mt-5 flex items-center gap-2 text-graphite-600"
               >
-                <Phone className="h-4 w-4 text-brass-400" />
+                <Phone className="h-4 w-4 text-brass-600" />
                 {company.contact.phoneDisplay}
               </a>
               <Link
                 href="/contact"
-                className="mt-4 inline-flex justify-center items-center bg-brass-500 text-graphite-900 font-semibold text-sm px-5 py-3"
+                className="mt-4 inline-flex justify-center items-center bg-brass-500 text-paper font-semibold text-sm px-5 py-3"
               >
                 Get a Quote
               </Link>

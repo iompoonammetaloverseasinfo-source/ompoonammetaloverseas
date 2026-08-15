@@ -18,9 +18,9 @@ export default function IconTile({ type, size = "md", className = "" }) {
       className={`relative flex shrink-0 items-center justify-center rounded-full ${s.box} ${className}`}
       style={{
         background:
-          "radial-gradient(circle at 32% 28%, #333947 0%, #1B1F27 55%, #12151B 100%)",
+          "radial-gradient(circle at 32% 28%, #1E3A66 0%, #122A4D 55%, #0A2245 100%)",
         boxShadow:
-          "inset 0 1px 1px rgba(255,255,255,0.08), inset 0 -8px 16px rgba(0,0,0,0.35), 0 6px 16px rgba(18,21,27,0.18)",
+          "inset 0 1px 1px rgba(255,255,255,0.08), inset 0 -8px 16px rgba(4,15,35,0.35), 0 6px 16px rgba(10,34,69,0.18)",
       }}
     >
       <div

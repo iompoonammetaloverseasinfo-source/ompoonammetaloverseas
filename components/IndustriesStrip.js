@@ -8,7 +8,7 @@ export default function IndustriesStrip() {
         {industries.map((industry) => (
           <span
             key={industry}
-            className="text-sm text-graphite-200 bg-graphite-800 border border-graphite-700 px-4 py-2"
+            className="text-sm text-graphite-700 bg-paper border border-graphite-200 px-4 py-2"
           >
             {industry}
           </span>

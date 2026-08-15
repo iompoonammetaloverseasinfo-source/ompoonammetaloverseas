@@ -7,9 +7,10 @@ import CatalogCard from "@/components/CatalogCard";
 import ProductIcon from "@/components/ProductIcon";
 import IconTile from "@/components/IconTile";
 import SectionHeading from "@/components/SectionHeading";
+import GradesAvailable from "@/components/GradesAvailable";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
-import { catalog, flattenCatalog, findCatalogNode } from "@/data/catalog";
+import { catalog, flattenCatalog, findCatalogNode, groupDataTables } from "@/data/catalog";
 import { siteUrl } from "@/data/siteConfig";
 
 export function generateStaticParams() {
@@ -31,11 +32,69 @@ export function generateMetadata({ params }) {
   };
 }
 
+// Turns a group label into a URL-safe anchor id, e.g. "Standards & Compliance" -> "standards-compliance"
+function slugifyGroup(label) {
+  return label
+    .toLowerCase()
+    .replace(/&/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function DataTable({ table }) {
+  return (
+    <div>
+      <h4 className="font-display text-base font-bold uppercase tracking-tight text-graphite-900">
+        {table.title}
+      </h4>
+      {table.columns.length > 6 && (
+        <p className="mt-1 text-xs italic text-graphite-400">Scroll to see all columns →</p>
+      )}
+      <div className="mt-3 overflow-x-auto border border-graphite-100 bg-paper">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-graphite-200 bg-mist-50">
+              {table.columns.map((c) => (
+                <th
+                  key={c}
+                  className="whitespace-nowrap px-3 py-2 text-left font-mono text-xs uppercase tracking-wide text-graphite-500"
+                >
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {table.rows.map((row, i) => (
+              <tr key={i} className="border-b border-graphite-100 last:border-0">
+                {row.map((cell, j) => (
+                  <td key={j} className="whitespace-nowrap px-3 py-2 text-graphite-800">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 export default function CatalogNodePage({ params }) {
   const result = findCatalogNode(params.slug);
   if (!result) notFound();
   const { node, trail } = result;
   const hasChildren = node.children && node.children.length > 0;
+
+  const dataTableGroups = node.dataTables ? groupDataTables(node.dataTables) : [];
+  // "Grouped" only kicks in the section-nav/collapsible treatment when a
+  // node actually opted into it (via a `group` field on its tables) — a
+  // node with a couple of flat, ungrouped tables (like each grade page)
+  // still gets exactly the plain layout it always had.
+  const isGrouped =
+    dataTableGroups.length > 0 &&
+    (dataTableGroups.length > 1 || dataTableGroups[0].group !== null);
 
   const breadcrumbItems = [
     { href: "/products", label: "Products" },
@@ -106,6 +165,13 @@ export default function CatalogNodePage({ params }) {
         </section>
       ) : null}
 
+      {hasChildren && (
+        <GradesAvailable
+          gradeTagLists={node.children.map((c) => c.grades || [])}
+          categoryName={node.name}
+        />
+      )}
+
       {node.guide && (
         <section className="section bg-paper">
           <div className="wrap max-w-3xl">
@@ -121,6 +187,81 @@ export default function CatalogNodePage({ params }) {
                   </p>
                 </ScrollReveal>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {!hasChildren && node.specs && node.specs.length > 0 && (
+        <section className="section bg-paper">
+          <div className="wrap max-w-3xl">
+            <SectionHeading eyebrow="Specification" title="Key Data" />
+            <div className="mt-8 divide-y divide-graphite-100 border-t border-graphite-100">
+              {node.specs.map((s) => (
+                <div
+                  key={s.label}
+                  className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                >
+                  <span className="shrink-0 font-mono text-xs uppercase tracking-wide text-graphite-500">
+                    {s.label}
+                  </span>
+                  <span className="text-sm text-graphite-800 sm:text-right">{s.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {!hasChildren && node.dataTables && node.dataTables.length > 0 && (
+        <section className="section bg-mist-50">
+          <div className="wrap max-w-4xl">
+            <SectionHeading eyebrow="Technical Data" title="Full Specifications" />
+
+            {isGrouped && (
+              <nav className="mt-6 flex flex-wrap gap-2" aria-label="Jump to section">
+                {dataTableGroups.map(({ group }) => (
+                  <a
+                    key={group}
+                    href={`#${slugifyGroup(group)}`}
+                    className="border border-graphite-200 bg-paper px-3 py-1.5 font-mono text-xs uppercase tracking-wide text-graphite-600 transition-colors hover:border-brass-400 hover:text-graphite-900"
+                  >
+                    {group}
+                  </a>
+                ))}
+              </nav>
+            )}
+
+            <div className="mt-8 space-y-10">
+              {!isGrouped &&
+                dataTableGroups[0]?.tables.map((t) => <DataTable key={t.title} table={t} />)}
+
+              {isGrouped &&
+                dataTableGroups.map(({ group, tables }) => {
+                  const startOpen = !tables.some((t) => t.collapsedByDefault);
+                  return (
+                    <details
+                      key={group}
+                      id={slugifyGroup(group)}
+                      open={startOpen}
+                      className="group scroll-mt-24 border-t border-graphite-200 pt-6 first:border-t-0 first:pt-0"
+                    >
+                      <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                        <span className="inline-flex items-center gap-2 font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
+                          <span className="inline-block text-brass-500 transition-transform group-open:rotate-90">
+                            ›
+                          </span>
+                          {group}
+                        </span>
+                      </summary>
+                      <div className="mt-6 space-y-10 pl-5">
+                        {tables.map((t) => (
+                          <DataTable key={t.title} table={t} />
+                        ))}
+                      </div>
+                    </details>
+                  );
+                })}
             </div>
           </div>
         </section>

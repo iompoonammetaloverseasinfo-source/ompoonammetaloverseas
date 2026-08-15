@@ -5,14 +5,13 @@ import { company } from "@/data/company";
 
 export default function FounderProfile() {
   return (
-    <section className="section bg-graphite-900 relative overflow-hidden">
-      <div className="absolute inset-0 grid-backdrop-dark opacity-100" aria-hidden="true" />
+    <section className="section bg-paper relative overflow-hidden">
       <div className="wrap relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <ScrollReveal className="lg:col-span-4">
-          <div className="spec-card border-graphite-700 bg-graphite-800 max-w-xs mx-auto lg:mx-0">
-            <div className="spec-card__strip !bg-graphite-800 !border-graphite-700 !text-graphite-400">
+          <div className="spec-card max-w-xs mx-auto lg:mx-0">
+            <div className="spec-card__strip">
               <span>Proprietor</span>
-              <span className="text-brass-400">Since 2021</span>
+              <span className="text-brass-600">Since 2021</span>
             </div>
             <div className="p-3">
               <Image
@@ -29,18 +28,18 @@ export default function FounderProfile() {
 
         <div className="lg:col-span-8">
           <ScrollReveal>
-            <p className="eyebrow text-brass-400">The Founder</p>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold uppercase text-paper leading-[0.95]">
+            <p className="eyebrow text-brass-600">The Founder</p>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold uppercase text-graphite-900 leading-[0.95]">
               {company.proprietor}
             </h2>
-            <p className="mt-2 font-mono text-sm text-graphite-400 uppercase tracking-[0.14em]">
+            <p className="mt-2 font-mono text-sm text-graphite-500 uppercase tracking-[0.14em]">
               {company.designation}, {company.legalTradeName}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <Quote className="mt-8 h-7 w-7 text-brass-500/70" />
-            <p className="mt-3 font-display text-2xl sm:text-3xl leading-snug text-graphite-100 max-w-2xl">
+            <p className="mt-3 font-display text-2xl sm:text-3xl leading-snug text-graphite-800 max-w-2xl">
               &ldquo;Our word is only as good as the mill certificate behind
               it. Every coil, plate and pipe that leaves our stock is the
               grade it was sold as.&rdquo;
@@ -48,7 +47,7 @@ export default function FounderProfile() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.16}>
-            <div className="mt-8 space-y-4 text-graphite-300 leading-relaxed max-w-2xl">
+            <div className="mt-8 space-y-4 text-graphite-600 leading-relaxed max-w-2xl">
               <p>
                 Mr. {company.proprietor} founded {company.legalTradeName} in{" "}
                 {company.founded} in Ahmedabad, Gujarat, building a metal
