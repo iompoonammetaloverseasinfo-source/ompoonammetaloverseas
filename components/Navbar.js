@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { pages, siteConfig } from "@/data/siteConfig";
 import { company } from "@/data/company";
 import { catalog } from "@/data/catalog";
+import Image from "next/image";
 
 // Sub-links shown in the Products dropdown (desktop) and accordion (mobile).
 const productLinks = [
@@ -123,22 +124,26 @@ export default function Navbar() {
         scrolled || open ? "shadow-sm border-b border-graphite-100" : "border-b border-transparent"
       )}
     >
-      <div className="wrap flex h-16 items-center gap-6">
+      <div className="wrap flex h-20 items-center justify-between gap-6">
 
-        {/* Company Logo / Name */}
+        {/* Company Logo */}
         <Link
           href="/"
-          className="flex shrink-0 items-center text-graphite-900"
+          className="flex shrink-0 items-center py-2"
           aria-label={`${siteConfig.name} — home`}
         >
-          <span className="whitespace-nowrap font-display text-xl lg:text-2xl font-bold uppercase leading-none tracking-tight">
-            Om Poonam Metal
-            <span className="text-brass-600"> Overseas</span>
-          </span>
+          <Image
+            src="/logo.jpeg"
+            alt={siteConfig.name}
+            width={160}
+            height={160}
+            priority
+            className="h-14 w-auto lg:h-16 object-contain"
+          />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-7" aria-label="Primary">
+        <nav className="hidden lg:flex flex-1 items-center justify-center gap-9" aria-label="Primary">
           {navPages.map((p) => {
             const active = pathname === p.path;
 
@@ -178,7 +183,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden lg:flex shrink-0 items-center gap-5">
           <a
             href={`tel:${company.contact.phoneE164}`}
             className="flex items-center gap-2 text-sm text-graphite-600 hover:text-graphite-900 transition-colors"

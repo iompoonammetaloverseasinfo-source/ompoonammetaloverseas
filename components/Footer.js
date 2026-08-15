@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { pages, siteConfig } from "@/data/siteConfig";
 import { company } from "@/data/company";
@@ -11,11 +12,13 @@ export default function Footer() {
     <footer className="bg-graphite-50 text-graphite-600 border-t border-graphite-100">
       <div className="wrap py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-2.5 text-graphite-900">
-            <span className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight">
-              Om Poonam Metal <span className="text-brass-600">Overseas</span>
-            </span>
-          </div>
+          <Image
+            src="/logo.jpeg"
+            alt={siteConfig.name}
+            width={220}
+            height={220}
+            className="h-32 w-auto object-contain"
+          />
           <p className="mt-4 text-sm leading-relaxed max-w-sm text-graphite-500">
             {siteConfig.description}
           </p>
