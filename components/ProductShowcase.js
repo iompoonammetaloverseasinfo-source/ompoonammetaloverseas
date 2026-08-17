@@ -29,11 +29,11 @@ import { catalog, countLeafTypes } from "@/data/catalog";
 // priority over the placeholder map below, if you'd rather set it there
 // instead of here.
 const categoryImages = {
-  "pipe-and-tube": "/images/products/pipe-and-tube.jpg",
-  "pipe-fittings": "/images/products/pipe-fittings.jpg",
-  flanges: "/images/products/flanges.jpg",
-  "sheet-and-plate": "/images/products/sheet-and-plate.jpg",
-  "round-bars": "/images/products/round-bars.jpg",
+  "pipe-and-tube": "/images/ashtapad/ss-310-seamless-pipe.jpg",
+  "pipe-fittings": "/images/ashtapad/1-1-4-stainless-steel-pipe-fittings.jpg",
+  flanges: "/images/ashtapad/304-stainless-steel-flange.jpg",
+  "sheet-and-plate": "/images/ashtapad/0.5-mm-stainless-steel-sheet.jpg",
+  "round-bars": "/images/ashtapad/825-inconel-round-bar.jpg",
 };
 
 export default function ProductShowcase() {
