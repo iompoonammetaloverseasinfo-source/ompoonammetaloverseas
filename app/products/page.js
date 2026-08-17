@@ -64,11 +64,11 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="pt-16 sm:pt-20 lg:pt-28 pb-4 bg-graphite-900">
+      <section className="pt-16 sm:pt-20 lg:pt-28 pb-4 bg-graphite-50 border-t border-graphite-100">
         <div className="wrap">
           <ScrollReveal>
-            <p className="eyebrow text-brass-400">Industries We Serve</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold uppercase text-paper leading-tight max-w-xl">
+            <p className="eyebrow text-brass-600">Industries We Serve</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold uppercase text-graphite-900 leading-tight max-w-xl">
               Supplying sectors where the wrong grade is not an option
             </h2>
           </ScrollReveal>

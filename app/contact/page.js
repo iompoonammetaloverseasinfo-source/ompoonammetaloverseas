@@ -92,11 +92,22 @@ export default function ContactPage() {
                     <Clock className="h-5 w-5 shrink-0 text-brass-500 mt-0.5" />
                     <div>
                       <p className="text-xs font-mono uppercase tracking-wider text-graphite-400">
-                        Working Days
+                        Working Hours
                       </p>
-                      <p className="mt-1 text-sm text-graphite-700">
-                        Monday – Saturday
-                      </p>
+                      <div className="mt-1 space-y-1">
+                        <p className="flex items-baseline justify-between gap-3 text-sm text-graphite-700">
+                          <span>{company.contact.hours.weekdays}</span>
+                          <span className="font-semibold text-graphite-900">
+                            {company.contact.hours.weekdayTime}
+                          </span>
+                        </p>
+                        <p className="flex items-baseline justify-between gap-3 text-sm text-graphite-700">
+                          <span>Sunday</span>
+                          <span className="font-semibold text-graphite-400">
+                            {company.contact.hours.sunday}
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

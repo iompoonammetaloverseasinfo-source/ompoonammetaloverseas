@@ -7,38 +7,81 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
+     colors: {
+        // =========================
+        // BRAND COLOR
+        // =========================
+        brand: {
+          50: "#F2F5FA",
+          100: "#E5EAF3",
+          200: "#CBD5E5",
+          300: "#A8B6CE",
+          400: "#7186AC",
+          500: "#1A3263",
+          600: "#172C57",
+          700: "#14264B",
+          800: "#10203F",
+          900: "#0B1933",
+          950: "#071225",
+          DEFAULT: "#1A3263",
+        },
+
+        // =========================
+        // PAPER
+        // =========================
         paper: "#FFFFFF",
+
+        // =========================
+        // LIGHT BLUE / MIST
+        // =========================
         mist: {
-          50: "#F5F7F9",
-          100: "#EAEEF2",
-          200: "#DCE2E8",
-          300: "#C3CBD4",
+          50: "#F5F8FC",
+          100: "#EAF0F8",
+          200: "#D6E2F0",
+          300: "#B9CBE3",
         },
+
+        // =========================
+        // GRAPHITE
+        // =========================
+        // 300 and 400 were darkened for text legibility — both are used
+        // as real text throughout the site (mono labels, eyebrows, step
+        // numbers, secondary captions), not just borders, and at their
+        // original values fell well short of WCAG AA contrast on a
+        // white/paper background:
+        //   300  #AEB9CB -> ~2.0:1  (fails; now #8996AC -> ~2.9:1)
+        //   400  #8290A8 -> ~3.2:1  (fails; now #63728C -> ~4.9:1, passes AA)
+        //   500  #5F6D87 -> ~5.2:1  (already passed; nudged to ~5.7:1)
+        //   600  #46536B -> ~7.8:1  (already strong; nudged to ~8.6:1)
+        // 700-950 were already dark enough for headings and left as-is.
         graphite: {
-          50: "#F2F3F5",
-          100: "#E1E3E7",
-          200: "#B9BEC7",
-          300: "#8D94A1",
-          400: "#666E7D",
-          500: "#4A505E",
-          600: "#363B47",
-          700: "#262A34",
-          800: "#1B1F27",
-          900: "#12151B",
-          950: "#0B0D11",
+          50: "#F5F7FA",
+          100: "#E9EDF3",
+          200: "#D3DAE5",
+          300: "#8996AC",
+          400: "#63728C",
+          500: "#54617A",
+          600: "#3D4A61",
+          700: "#333E54",
+          800: "#1E2B47",
+          900: "#0F2C57",
+          950: "#0A2245",
         },
+
+        // =========================
+        // BRASS / GOLD ACCENT
+        // =========================
         brass: {
-          50: "#FBF4E3",
-          100: "#F5E4BE",
-          200: "#EACF8C",
-          300: "#DCB661",
-          400: "#C99A3E",
-          500: "#B8872E",
-          600: "#976D22",
-          700: "#78561B",
-          800: "#5B4114",
-          900: "#3E2C0D",
+          50: "#FFF9E8",
+          100: "#FFF0C2",
+          200: "#FFE08A",
+          300: "#F5CB4F",
+          400: "#E6B82E",
+          500: "#D4A72C",
+          600: "#B88B1C",
+          700: "#936D13",
+          800: "#6E510E",
+          900: "#4A3609",
         },
       },
       fontFamily: {

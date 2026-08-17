@@ -4,6 +4,7 @@ import ProductShowcase from "@/components/ProductShowcase";
 import StatsStrip from "@/components/StatsStrip";
 import ProductsTeaser from "@/components/ProductsTeaser";
 import CatalogScale from "@/components/CatalogScale";
+import GradeLinkDirectory from "@/components/GradeLinkDirectory";
 import CertificateShowcase from "@/components/CertificateShowcase";
 import HowWeWork from "@/components/HowWeWork";
 import GuideCallout from "@/components/GuideCallout";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <StatsStrip />
       <ProductsTeaser />
       <CatalogScale />
+      <GradeLinkDirectory />
       <CertificateShowcase />
       <HowWeWork />
       <GuideCallout />

@@ -1,10 +1,30 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import IconTile from "./IconTile";
+import ImageWithFallback from "./ImageWithFallback";
 
 export default function CatalogCard({ href, node }) {
   const childCount = node.children?.length;
+
+  // Image priority: a real manually-set photo (node.image) wins, then the
+  // first scraped gallery shot (node.gallery[0]), then fall back to the
+  // icon tile. Most nodes will only ever have the gallery photo since
+  // node.image is a manual step — this is what makes the scrape alone
+  // enough to get real product photos on the grid instead of icons.
+  //
+  // NOTE: scraped gallery URLs in the current catalog.js point at
+  // ashtapad.co.in's own image server — those are being replaced with
+  // locally-hosted photos over time. ImageWithFallback catches any
+  // broken/missing src at runtime (a local path that isn't uploaded yet,
+  // or a stale reference URL) and drops back to the icon tile instead of
+  // showing a broken image.
+  const photo = node.image
+    ? { src: node.image, alt: node.name }
+    : node.gallery?.[0]
+      ? { src: node.gallery[0].url, alt: node.gallery[0].alt || node.name }
+      : null;
+
+  const grades = node.grades?.length ? node.grades : null;
 
   return (
     <Link href={href} className="group spec-card flex h-full flex-col">
@@ -13,24 +33,39 @@ export default function CatalogCard({ href, node }) {
         {childCount ? <span>{childCount}</span> : null}
       </div>
       <div className="relative flex aspect-[4/3] items-center justify-center bg-graphite-900">
-        {node.image ? (
-          <Image
-            src={node.image}
-            alt={node.name}
-            fill
-            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-            sizes="(min-width: 1024px) 300px, 45vw"
-          />
-        ) : (
-          <div className="transition-transform duration-300 group-hover:scale-105">
-            <IconTile type={node.icon} size="md" />
-          </div>
-        )}
+        <ImageWithFallback
+          src={photo?.src}
+          alt={photo?.alt || node.name}
+          className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+          sizes="(min-width: 1024px) 300px, 45vw"
+          fallback={
+            <div className="transition-transform duration-300 group-hover:scale-105">
+              <IconTile type={node.icon} size="md" />
+            </div>
+          }
+        />
       </div>
       <div className="flex grow flex-col p-4 sm:p-5">
         <h3 className="font-display text-lg font-bold uppercase leading-tight tracking-tight text-graphite-900 sm:text-xl">
           {node.name}
         </h3>
+        {grades && (
+          <div className="mt-1.5 flex flex-wrap gap-1">
+            {grades.slice(0, 3).map((g) => (
+              <span
+                key={g}
+                className="border border-graphite-200 bg-mist-50 px-2 py-0.5 font-mono text-[11px] uppercase tracking-wide text-graphite-500"
+              >
+                {g}
+              </span>
+            ))}
+            {grades.length > 3 && (
+              <span className="px-1 py-0.5 font-mono text-[11px] uppercase tracking-wide text-graphite-400">
+                +{grades.length - 3}
+              </span>
+            )}
+          </div>
+        )}
         {node.description && (
           <p className="mt-1.5 text-xs leading-relaxed text-graphite-500 sm:text-sm">
             {node.description}

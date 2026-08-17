@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import BackToTopButton from "@/components/BackToTopButton";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
 import { company } from "@/data/company";
@@ -143,6 +144,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <BackToTopButton />
       </body>
     </html>
   );

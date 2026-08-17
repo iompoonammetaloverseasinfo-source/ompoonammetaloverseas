@@ -11,14 +11,14 @@ export const company = {
   groupConcern: "Vardhman Steel India",
 
   address: {
-    line1: "Shop No. 17, Ravi Estate",
+    line1: "Shop No. 5, Ravi Estate",
     line2: "Keval Kantha Road, Near Gujarat Bottling Road",
     line3: "Industrial Area, Rakhial",
     city: "Ahmedabad",
     state: "Gujarat",
     pin: "380023",
     country: "India",
-    full: "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat – 380023, India",
+    full: "Shop No. 5, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat – 380023, India",
     mapQuery:
       "Shop No. 17, Ravi Estate, Keval Kantha Road, Near Gujarat Bottling Road, Industrial Area, Rakhial, Ahmedabad, Gujarat 380023",
     // Exact pin, from the location shared directly (resolves to the same
@@ -39,6 +39,11 @@ export const company = {
     //   2. Enter this inbox's email address, click "Create Access Key"
     //   3. Copy the key from the email it sends you, paste it below
     web3formsKey: "1042bd3b-0877-43e6-af06-2c8ba9e15c92",
+    hours: {
+      weekdays: "Monday – Saturday",
+      weekdayTime: "8:00 AM – 8:00 PM",
+      sunday: "Closed",
+    },
   },
 
   registrations: {
