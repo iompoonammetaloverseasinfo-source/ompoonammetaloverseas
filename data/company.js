@@ -39,6 +39,11 @@ export const company = {
     //   2. Enter this inbox's email address, click "Create Access Key"
     //   3. Copy the key from the email it sends you, paste it below
     web3formsKey: "1042bd3b-0877-43e6-af06-2c8ba9e15c92",
+    hours: {
+      weekdays: "Monday – Saturday",
+      weekdayTime: "8:00 AM – 8:00 PM",
+      sunday: "Closed",
+    },
   },
 
   registrations: {

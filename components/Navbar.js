@@ -67,7 +67,7 @@ function ProductsDropdownPortal({ anchorRect, onClose }) {
           <Link
             key={link.href}
             href={link.href}
-            className="block border-b border-graphite-100 px-4 py-3 text-sm text-graphite-700 last:border-b-0 hover:bg-mist-50 hover:text-brass-700"
+            className="block border-b border-graphite-100 px-4 py-3 text-sm font-semibold text-graphite-700 last:border-b-0 hover:bg-mist-50 hover:text-brass-700"
           >
             {link.label}
           </Link>
@@ -124,7 +124,7 @@ export default function Navbar() {
         scrolled || open ? "shadow-sm border-b border-graphite-100" : "border-b border-transparent"
       )}
     >
-      <div className="wrap flex h-20 items-center justify-between gap-6">
+      <div className="wrap flex h-24 items-center justify-between gap-6">
 
         {/* Company Logo */}
         <Link
@@ -135,10 +135,10 @@ export default function Navbar() {
           <Image
             src="/logo.jpeg"
             alt={siteConfig.name}
-            width={160}
-            height={160}
+            width={200}
+            height={200}
             priority
-            className="h-14 w-auto lg:h-16 object-contain"
+            className="h-16 w-auto lg:h-20 object-contain"
           />
         </Link>
 
@@ -156,7 +156,7 @@ export default function Navbar() {
                   onClick={toggleDesktopDropdown}
                   aria-expanded={!!dropdownRect}
                   className={clsx(
-                    "flex items-center gap-1 font-mono text-[13px] uppercase tracking-[0.12em] transition-colors",
+                    "flex items-center gap-1 font-mono text-[13px] font-bold uppercase tracking-[0.12em] transition-colors",
                     active ? "text-brass-600" : "text-graphite-600 hover:text-graphite-900"
                   )}
                 >
@@ -173,7 +173,7 @@ export default function Navbar() {
                 key={p.path}
                 href={p.path}
                 className={clsx(
-                  "font-mono text-[13px] uppercase tracking-[0.12em] transition-colors",
+                  "font-mono text-[13px] font-bold uppercase tracking-[0.12em] transition-colors",
                   active ? "text-brass-600" : "text-graphite-600 hover:text-graphite-900"
                 )}
               >
@@ -186,14 +186,14 @@ export default function Navbar() {
         <div className="hidden lg:flex shrink-0 items-center gap-5">
           <a
             href={`tel:${company.contact.phoneE164}`}
-            className="flex items-center gap-2 text-sm text-graphite-600 hover:text-graphite-900 transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-graphite-600 hover:text-graphite-900 transition-colors"
           >
             <Phone className="h-3.5 w-3.5 text-brass-600" />
             {company.contact.phoneDisplay}
           </a>
           <Link
             href="/contact"
-            className="inline-flex items-center bg-brass-500 hover:bg-brass-600 text-paper font-semibold text-sm px-5 py-2.5 transition-colors"
+            className="inline-flex items-center bg-brass-500 hover:bg-brass-600 text-paper font-bold text-sm px-5 py-2.5 transition-colors"
           >
             Get a Quote
           </Link>
@@ -219,7 +219,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden border-t border-graphite-100 bg-paper max-h-[calc(100vh-64px)] overflow-y-auto"
+            className="lg:hidden overflow-hidden border-t border-graphite-100 bg-paper max-h-[calc(100vh-96px)] overflow-y-auto"
             aria-label="Mobile"
           >
             <div className="wrap flex flex-col py-4">
@@ -234,7 +234,7 @@ export default function Navbar() {
                         onClick={() => setMobileProductsOpen((v) => !v)}
                         aria-expanded={mobileProductsOpen}
                         className={clsx(
-                          "flex w-full items-center justify-between py-3 font-display text-2xl font-semibold uppercase tracking-tight",
+                          "flex w-full items-center justify-between py-3 font-display text-2xl font-bold uppercase tracking-tight",
                           active ? "text-brass-600" : "text-graphite-900"
                         )}
                       >
@@ -259,7 +259,7 @@ export default function Navbar() {
                               <Link
                                 key={link.href}
                                 href={link.href}
-                                className="block py-2.5 font-mono text-sm uppercase tracking-wide text-graphite-500"
+                                className="block py-2.5 font-mono text-sm font-bold uppercase tracking-wide text-graphite-500"
                               >
                                 {link.label}
                               </Link>
@@ -276,7 +276,7 @@ export default function Navbar() {
                     key={p.path}
                     href={p.path}
                     className={clsx(
-                      "py-3 font-display text-2xl font-semibold uppercase tracking-tight border-b border-graphite-100",
+                      "py-3 font-display text-2xl font-bold uppercase tracking-tight border-b border-graphite-100",
                       active ? "text-brass-600" : "text-graphite-900"
                     )}
                   >
@@ -286,14 +286,14 @@ export default function Navbar() {
               })}
               <a
                 href={`tel:${company.contact.phoneE164}`}
-                className="mt-5 flex items-center gap-2 text-graphite-600"
+                className="mt-5 flex items-center gap-2 font-bold text-graphite-600"
               >
                 <Phone className="h-4 w-4 text-brass-600" />
                 {company.contact.phoneDisplay}
               </a>
               <Link
                 href="/contact"
-                className="mt-4 inline-flex justify-center items-center bg-brass-500 text-paper font-semibold text-sm px-5 py-3"
+                className="mt-4 inline-flex justify-center items-center bg-brass-500 text-paper font-bold text-sm px-5 py-3"
               >
                 Get a Quote
               </Link>

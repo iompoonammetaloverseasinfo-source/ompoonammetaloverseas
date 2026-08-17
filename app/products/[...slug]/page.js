@@ -115,7 +115,6 @@ export default function CatalogNodePage({ params }) {
   if (!result) notFound();
   const { node, trail } = result;
   const hasChildren = node.children && node.children.length > 0;
-  console.log("node--->>", node)
 
   const dataTableGroups = node.dataTables ? groupDataTables(node.dataTables) : [];
   // "Grouped" only kicks in the section-nav/collapsible treatment when a
@@ -265,21 +264,68 @@ export default function CatalogNodePage({ params }) {
       )}
 
       {hasChildren ? (
-        <section className="section bg-mist-50">
-          <div className="wrap">
-            <p className="eyebrow mb-8">{node.children.length} types available</p>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-              {node.children.map((child) => (
-                <ScrollReveal key={child.slug}>
-                  <CatalogCard
-                    href={`/products/${[...params.slug, child.slug].join("/")}`}
-                    node={child}
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <>
+          {(() => {
+            const leafChildren = node.children.filter(
+              (child) => !child.children || child.children.length === 0
+            );
+            const groupChildren = node.children.filter(
+              (child) => child.children && child.children.length > 0
+            );
+
+            return (
+              <>
+                {leafChildren.length > 0 && (
+                  <section className="section bg-mist-50">
+                    <div className="wrap">
+                      <p className="eyebrow mb-8">{leafChildren.length} types available</p>
+                      <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+                        {leafChildren.map((child) => (
+                          <ScrollReveal key={child.slug}>
+                            <CatalogCard
+                              href={`/products/${[...params.slug, child.slug].join("/")}`}
+                              node={child}
+                            />
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                )}
+
+                {groupChildren.map((group, i) => (
+                  <section
+                    key={group.slug}
+                    className={`section ${
+                      (leafChildren.length > 0 ? i + 1 : i) % 2 === 0 ? "bg-paper" : "bg-mist-50"
+                    }`}
+                  >
+                    <div className="wrap">
+                      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-graphite-200 pb-4">
+                        <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-graphite-900 sm:text-3xl">
+                          {group.name}
+                        </h3>
+                        <span className="font-mono text-xs uppercase tracking-wide text-graphite-400">
+                          {group.children.length} types available
+                        </span>
+                      </div>
+                      <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+                        {group.children.map((subProduct) => (
+                          <ScrollReveal key={subProduct.slug}>
+                            <CatalogCard
+                              href={`/products/${[...params.slug, group.slug, subProduct.slug].join("/")}`}
+                              node={subProduct}
+                            />
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                ))}
+              </>
+            );
+          })()}
+        </>
       ) : null}
 
       {hasChildren && (

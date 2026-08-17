@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import IconTile from "./IconTile";
+import ImageWithFallback from "./ImageWithFallback";
 
 export default function CatalogCard({ href, node }) {
   const childCount = node.children?.length;
@@ -11,6 +11,13 @@ export default function CatalogCard({ href, node }) {
   // icon tile. Most nodes will only ever have the gallery photo since
   // node.image is a manual step — this is what makes the scrape alone
   // enough to get real product photos on the grid instead of icons.
+  //
+  // NOTE: scraped gallery URLs in the current catalog.js point at
+  // ashtapad.co.in's own image server — those are being replaced with
+  // locally-hosted photos over time. ImageWithFallback catches any
+  // broken/missing src at runtime (a local path that isn't uploaded yet,
+  // or a stale reference URL) and drops back to the icon tile instead of
+  // showing a broken image.
   const photo = node.image
     ? { src: node.image, alt: node.name }
     : node.gallery?.[0]
@@ -26,19 +33,17 @@ export default function CatalogCard({ href, node }) {
         {childCount ? <span>{childCount}</span> : null}
       </div>
       <div className="relative flex aspect-[4/3] items-center justify-center bg-graphite-900">
-        {photo ? (
-          <Image
-            src={photo.src}
-            alt={photo.alt}
-            fill
-            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-            sizes="(min-width: 1024px) 300px, 45vw"
-          />
-        ) : (
-          <div className="transition-transform duration-300 group-hover:scale-105">
-            <IconTile type={node.icon} size="md" />
-          </div>
-        )}
+        <ImageWithFallback
+          src={photo?.src}
+          alt={photo?.alt || node.name}
+          className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+          sizes="(min-width: 1024px) 300px, 45vw"
+          fallback={
+            <div className="transition-transform duration-300 group-hover:scale-105">
+              <IconTile type={node.icon} size="md" />
+            </div>
+          }
+        />
       </div>
       <div className="flex grow flex-col p-4 sm:p-5">
         <h3 className="font-display text-lg font-bold uppercase leading-tight tracking-tight text-graphite-900 sm:text-xl">

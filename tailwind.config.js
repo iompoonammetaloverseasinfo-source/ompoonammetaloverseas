@@ -44,14 +44,24 @@ module.exports = {
         // =========================
         // GRAPHITE
         // =========================
+        // 300 and 400 were darkened for text legibility — both are used
+        // as real text throughout the site (mono labels, eyebrows, step
+        // numbers, secondary captions), not just borders, and at their
+        // original values fell well short of WCAG AA contrast on a
+        // white/paper background:
+        //   300  #AEB9CB -> ~2.0:1  (fails; now #8996AC -> ~2.9:1)
+        //   400  #8290A8 -> ~3.2:1  (fails; now #63728C -> ~4.9:1, passes AA)
+        //   500  #5F6D87 -> ~5.2:1  (already passed; nudged to ~5.7:1)
+        //   600  #46536B -> ~7.8:1  (already strong; nudged to ~8.6:1)
+        // 700-950 were already dark enough for headings and left as-is.
         graphite: {
           50: "#F5F7FA",
           100: "#E9EDF3",
           200: "#D3DAE5",
-          300: "#AEB9CB",
-          400: "#8290A8",
-          500: "#5F6D87",
-          600: "#46536B",
+          300: "#8996AC",
+          400: "#63728C",
+          500: "#54617A",
+          600: "#3D4A61",
           700: "#333E54",
           800: "#1E2B47",
           900: "#0F2C57",
