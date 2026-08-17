@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import CatalogCard from "@/components/CatalogCard";
 import ProductIcon from "@/components/ProductIcon";
@@ -34,7 +34,7 @@ export function generateMetadata({ params }) {
 
 // Turns any heading/label into a URL-safe anchor id, e.g. "Standards & Compliance" -> "standards-compliance"
 function slugify(label) {
-  return label
+  return (label || "")
     .toLowerCase()
     .replace(/&/g, "")
     .replace(/[^a-z0-9]+/g, "-")
@@ -81,11 +81,41 @@ function DataTable({ table }) {
   );
 }
 
+// Simple responsive grid for a node's image gallery. Uses next/image with
+// `fill` inside a fixed-aspect box so images stay uniform regardless of
+// their original dimensions, and falls back to the node name for alt text
+// if an individual gallery entry doesn't provide one.
+function Gallery({ images, nodeName }) {
+  return (
+    <section className="section bg-paper">
+      <div className="wrap max-w-5xl">
+        <SectionHeading eyebrow="Gallery" title={`${nodeName} in Detail`} />
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {images.map((img, i) => (
+            <ScrollReveal key={img.url || i} delay={Math.min(i, 6) * 0.03}>
+              <div className="relative aspect-square overflow-hidden border border-graphite-100 bg-mist-50">
+                <Image
+                  src={img.url}
+                  alt={img.alt || img.caption || nodeName}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function CatalogNodePage({ params }) {
   const result = findCatalogNode(params.slug);
   if (!result) notFound();
   const { node, trail } = result;
   const hasChildren = node.children && node.children.length > 0;
+  console.log("node--->>", node)
 
   const dataTableGroups = node.dataTables ? groupDataTables(node.dataTables) : [];
   // "Grouped" only kicks in the section-nav/collapsible treatment when a
@@ -112,7 +142,16 @@ export default function CatalogNodePage({ params }) {
     dataTocItems.push({ id: "key-data", label: "Key Data" });
   }
   if (isGrouped) {
-    for (const { group } of dataTableGroups) dataTocItems.push({ id: slugify(group), label: group });
+    // A product can mix grouped and ungrouped tables — groupDataTables()
+    // buckets any table with no `group` under the key `null`. Give that
+    // bucket the same fallback id/label the fully-ungrouped case below
+    // uses, instead of slugifying `null`.
+    for (const { group } of dataTableGroups) {
+      dataTocItems.push({
+        id: group ? slugify(group) : "technical-data",
+        label: group || "Technical Data",
+      });
+    }
   } else if (dataTableGroups.length && dataTableGroups[0].tables.length) {
     dataTocItems.push({ id: "technical-data", label: "Technical Data" });
   }
@@ -133,6 +172,17 @@ export default function CatalogNodePage({ params }) {
     })),
   ];
 
+  // Where the "Back" link should point: the immediate parent in the trail,
+  // or the top-level /products index if this node has no parent above it.
+  const backHref =
+    trail.length > 1
+      ? `/products/${trail
+        .slice(0, -1)
+        .map((t) => t.slug)
+        .join("/")}`
+      : "/products";
+  const backLabel = trail.length > 1 ? trail[trail.length - 2].name : "Products";
+
   return (
     <>
       <section className="relative overflow-hidden bg-graphite-900 pt-[68px]">
@@ -140,6 +190,15 @@ export default function CatalogNodePage({ params }) {
         <div className="wrap relative py-12 sm:py-16">
           <ScrollReveal>
             <Breadcrumb items={breadcrumbItems} dark />
+          </ScrollReveal>
+          <ScrollReveal delay={0.03}>
+            <Link
+              href={backHref}
+              className="group mt-4 inline-flex items-center gap-1.5 font-mono text-sm uppercase tracking-wide text-graphite-400 transition-colors hover:text-brass-300"
+            >
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+              Back to {backLabel}
+            </Link>
           </ScrollReveal>
           <ScrollReveal delay={0.05}>
             <div className="mt-5 flex items-start gap-4 sm:gap-5">
@@ -230,6 +289,10 @@ export default function CatalogNodePage({ params }) {
         />
       )}
 
+      {node.gallery && node.gallery.length > 0 && (
+        <Gallery images={node.gallery} nodeName={node.name} />
+      )}
+
       {node.guide && (
         <section className="section bg-paper">
           <div className="wrap max-w-3xl">
@@ -318,10 +381,12 @@ export default function CatalogNodePage({ params }) {
               {isGrouped &&
                 dataTableGroups.map(({ group, tables }) => {
                   const startOpen = !tables.some((t) => t.collapsedByDefault);
+                  const sectionId = group ? slugify(group) : "technical-data";
+                  const sectionLabel = group || "Technical Data";
                   return (
                     <details
-                      key={group}
-                      id={slugify(group)}
+                      key={sectionId}
+                      id={sectionId}
                       open={startOpen}
                       className="group scroll-mt-24 border-t border-graphite-200 pt-6 first:border-t-0 first:pt-0"
                     >
@@ -330,7 +395,7 @@ export default function CatalogNodePage({ params }) {
                           <span className="inline-block text-brass-500 transition-transform group-open:rotate-90">
                             ›
                           </span>
-                          {group}
+                          {sectionLabel}
                         </span>
                       </summary>
                       <div className="mt-6 space-y-10 pl-5">
