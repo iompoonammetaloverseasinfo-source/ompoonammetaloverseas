@@ -8,7 +8,7 @@ export default function GuideCallout() {
       <div className="wrap py-8 sm:py-10">
         <ScrollReveal>
           <Link
-            href="/products/pipes-tubes"
+            href="/products/pipe-and-tube"
             className="group flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="flex items-start gap-3 sm:items-center">

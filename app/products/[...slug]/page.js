@@ -10,6 +10,8 @@ import SectionHeading from "@/components/SectionHeading";
 import GradesAvailable from "@/components/GradesAvailable";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import DataTable from "@/components/DataTable";
+import Gallery from "@/components/Gallery";
 import { catalog, flattenCatalog, findCatalogNode, groupDataTables } from "@/data/catalog";
 import { siteUrl } from "@/data/siteConfig";
 
@@ -41,75 +43,10 @@ function slugify(label) {
     .replace(/(^-|-$)/g, "");
 }
 
-function DataTable({ table }) {
-  return (
-    <div>
-      <h4 className="font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
-        {table.title}
-      </h4>
-      {table.columns.length > 6 && (
-        <p className="mt-1 text-sm italic text-graphite-400">Scroll to see all columns →</p>
-      )}
-      <div className="mt-3 overflow-x-auto border border-graphite-100 bg-paper">
-        <table className="w-full border-collapse text-base">
-          <thead>
-            <tr className="border-b border-graphite-200 bg-mist-50">
-              {table.columns.map((c) => (
-                <th
-                  key={c}
-                  className="whitespace-nowrap px-3 py-2 text-left font-mono text-sm uppercase tracking-wide text-graphite-500"
-                >
-                  {c}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.rows.map((row, i) => (
-              <tr key={i} className="border-b border-graphite-100 last:border-0">
-                {row.map((cell, j) => (
-                  <td key={j} className="whitespace-nowrap px-3 py-2 text-graphite-800">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 // Simple responsive grid for a node's image gallery. Uses next/image with
 // `fill` inside a fixed-aspect box so images stay uniform regardless of
 // their original dimensions, and falls back to the node name for alt text
 // if an individual gallery entry doesn't provide one.
-function Gallery({ images, nodeName }) {
-  return (
-    <section className="section bg-paper">
-      <div className="wrap max-w-5xl">
-        <SectionHeading eyebrow="Gallery" title={`${nodeName} in Detail`} />
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {images.map((img, i) => (
-            <ScrollReveal key={img.url || i} delay={Math.min(i, 6) * 0.03}>
-              <div className="relative aspect-square overflow-hidden border border-graphite-100 bg-mist-50">
-                <Image
-                  src={img.url}
-                  alt={img.alt || img.caption || nodeName}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function CatalogNodePage({ params }) {
   const result = findCatalogNode(params.slug);
   if (!result) notFound();
@@ -336,7 +273,7 @@ export default function CatalogNodePage({ params }) {
       )}
 
       {node.gallery && node.gallery.length > 0 && (
-        <Gallery images={node.gallery} nodeName={node.name} />
+        <Gallery images={node.gallery} nodeName={node.name} icon={node.icon} />
       )}
 
       {node.guide && (
@@ -485,7 +422,7 @@ export default function CatalogNodePage({ params }) {
                 <SectionHeading
                   eyebrow="Get a Price"
                   title="Request a quote for this item"
-                  description="Tell us the grade, size, quantity and standard you need, and we'll confirm stock and pricing — usually the same working day."
+                  description="Specify the grade, size, quantity and governing standard, and we'll confirm stock and pricing — typically within the same working day."
                 />
                 <Link
                   href={`/contact?product=${encodeURIComponent(node.name)}`}
