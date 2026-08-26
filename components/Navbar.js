@@ -14,7 +14,6 @@ import Image from "next/image";
 
 // Sub-links shown in the Products dropdown (desktop) and accordion (mobile).
 const productLinks = [
-  { href: "/products", label: "All Products" },
   ...catalog.map((c) => ({ href: `/products/${c.slug}`, label: c.name })),
 ];
 

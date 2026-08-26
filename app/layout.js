@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import PageLoader from "@/components/PageLoader";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
 import { company } from "@/data/company";
@@ -138,6 +139,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <PageLoader />
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={localBusinessJsonLd} />
         <Navbar />

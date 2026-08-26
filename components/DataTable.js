@@ -1,6 +1,6 @@
-export default function DataTable({ table }) {
+export default function DataTable({ table, id }) {
   return (
-    <div>
+    <div id={id} className={id ? "scroll-mt-24" : undefined}>
       <h4 className="font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
         {table.title}
       </h4>
