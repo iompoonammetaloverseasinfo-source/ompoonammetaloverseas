@@ -31,6 +31,17 @@ export const company = {
   contact: {
     phoneDisplay: "+91 97849 79607",
     phoneE164: "+919784979607",
+    // Printed on every page of the firm's official print catalogue
+    // (shared with group concern Vardhman Steel India on the back
+    // cover). Kept as clearly-labelled secondary numbers rather than
+    // replacing the primary above, since it wasn't specified which line
+    // is actively monitored for calls/WhatsApp — surface these wherever
+    // "alternate contact" makes sense, without touching the primary
+    // phoneDisplay/phoneE164/whatsapp fields anything else already reads.
+    alternatePhones: [
+      { display: "+91 93240 06771", e164: "+919324006771" },
+      { display: "+91 79778 39113", e164: "+917977839113" },
+    ],
     whatsapp: "919784979607",
     email: "exportompmo@gmail.com",
     // Makes the contact form actually send email instead of just opening

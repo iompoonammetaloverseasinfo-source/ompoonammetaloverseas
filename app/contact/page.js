@@ -70,6 +70,19 @@ export default function ContactPage() {
                       >
                         {company.contact.phoneDisplay}
                       </a>
+                      {company.contact.alternatePhones?.length > 0 && (
+                        <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1">
+                          {company.contact.alternatePhones.map((p) => (
+                            <a
+                              key={p.e164}
+                              href={`tel:${p.e164}`}
+                              className="text-xs text-graphite-400 hover:text-brass-600 transition-colors"
+                            >
+                              {p.display}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="hairline" />

@@ -1,15 +1,18 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import CatalogCard from "@/components/CatalogCard";
 import ProductIcon from "@/components/ProductIcon";
 import IconTile from "@/components/IconTile";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import SectionHeading from "@/components/SectionHeading";
 import GradesAvailable from "@/components/GradesAvailable";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import DataTable from "@/components/DataTable";
+import Gallery from "@/components/Gallery";
+import CatalogueDownload from "@/components/CatalogueDownload";
 import { catalog, flattenCatalog, findCatalogNode, groupDataTables } from "@/data/catalog";
 import { siteUrl } from "@/data/siteConfig";
 
@@ -41,82 +44,37 @@ function slugify(label) {
     .replace(/(^-|-$)/g, "");
 }
 
-function DataTable({ table }) {
-  return (
-    <div>
-      <h4 className="font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
-        {table.title}
-      </h4>
-      {table.columns.length > 6 && (
-        <p className="mt-1 text-sm italic text-graphite-400">Scroll to see all columns →</p>
-      )}
-      <div className="mt-3 overflow-x-auto border border-graphite-100 bg-paper">
-        <table className="w-full border-collapse text-base">
-          <thead>
-            <tr className="border-b border-graphite-200 bg-mist-50">
-              {table.columns.map((c) => (
-                <th
-                  key={c}
-                  className="whitespace-nowrap px-3 py-2 text-left font-mono text-sm uppercase tracking-wide text-graphite-500"
-                >
-                  {c}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.rows.map((row, i) => (
-              <tr key={i} className="border-b border-graphite-100 last:border-0">
-                {row.map((cell, j) => (
-                  <td key={j} className="whitespace-nowrap px-3 py-2 text-graphite-800">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 // Simple responsive grid for a node's image gallery. Uses next/image with
 // `fill` inside a fixed-aspect box so images stay uniform regardless of
 // their original dimensions, and falls back to the node name for alt text
 // if an individual gallery entry doesn't provide one.
-function Gallery({ images, nodeName }) {
-  return (
-    <section className="section bg-paper">
-      <div className="wrap max-w-5xl">
-        <SectionHeading eyebrow="Gallery" title={`${nodeName} in Detail`} />
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {images.map((img, i) => (
-            <ScrollReveal key={img.url || i} delay={Math.min(i, 6) * 0.03}>
-              <div className="relative aspect-square overflow-hidden border border-graphite-100 bg-mist-50">
-                <Image
-                  src={img.url}
-                  alt={img.alt || img.caption || nodeName}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function CatalogNodePage({ params }) {
   const result = findCatalogNode(params.slug);
   if (!result) notFound();
   const { node, trail } = result;
   const hasChildren = node.children && node.children.length > 0;
 
-  const dataTableGroups = node.dataTables ? groupDataTables(node.dataTables) : [];
+  // hero_image (from the latest scrape) is a richer object with real alt
+  // text and an already-local path; older/un-rescraped nodes only have
+  // the plain `image` string. Prefer hero_image, fall back to image,
+  // fall back to null (ImageWithFallback then shows the icon tile).
+const heroImage = node.hero_image
+  ? { src: node.hero_image.local_path || node.hero_image.url, alt: node.hero_image.alt || node.name }
+  : node.image
+    ? { src: node.image, alt: node.name }
+    : { src: "/images/fall-back.png", alt: node.name };
+
+  // Price tables from the original scrape are excluded site-wide as stale,
+  // competitor-sourced figures — not OPMO's own pricing, and not
+  // appropriate to republish regardless of age. Filtered once, here, so
+  // it's excluded consistently from the TOC, the rendered tables, and the
+  // anchor-id set used to validate table_of_contents links.
+  const PRICE_TABLE_PATTERN = /price|\bcost\b|\brate\b|\bpricing\b/i;
+  const filteredDataTables = (node.dataTables || []).filter(
+    (t) => !PRICE_TABLE_PATTERN.test(t.title)
+  );
+
+  const dataTableGroups = filteredDataTables.length ? groupDataTables(filteredDataTables) : [];
   // "Grouped" only kicks in the section-nav/collapsible treatment when a
   // node actually opted into it (via a `group` field on its tables) — a
   // node with a couple of flat, ungrouped tables (like each grade page)
@@ -124,6 +82,31 @@ export default function CatalogNodePage({ params }) {
   const isGrouped =
     dataTableGroups.length > 0 &&
     (dataTableGroups.length > 1 || dataTableGroups[0].group !== null);
+
+  // specification_order/specifications (from the latest scrape) are short
+  // factual property/application lists — e.g. "Features of ASTM A312 TP
+  // 310 Seamless Pipe" -> ["Resistance to hot corrosion", ...]. Renders as
+  // its own bulleted section, replacing the older flattened `specs`
+  // comma-string rendering for nodes that have the richer data.
+  const hasRichSpecs =
+    !hasChildren && node.specification_order && node.specification_order.length > 0;
+
+  // Every id that will actually exist as a scrollable anchor on this
+  // rendered page — used to filter the scraper-provided table_of_contents
+  // down to entries that go somewhere, since not every original heading
+  // survived scraping/cleaning with its content intact.
+  const renderedSectionIds = new Set();
+  if (node.guide) {
+    for (const item of node.guide) renderedSectionIds.add(slugify(item.heading));
+  }
+  for (const { tables } of dataTableGroups) {
+    for (const t of tables) renderedSectionIds.add(slugify(t.title));
+  }
+  if (hasRichSpecs) {
+    for (const key of node.specification_order) renderedSectionIds.add(slugify(key));
+  } else if (!hasChildren && node.specs && node.specs.length > 0) {
+    renderedSectionIds.add("key-data");
+  }
 
   // Whole-page table of contents, split into up to two labeled clusters —
   // guide material vs. technical data — rather than one flat list. Only
@@ -136,27 +119,41 @@ export default function CatalogNodePage({ params }) {
       items: node.guide.map((item) => ({ id: slugify(item.heading), label: item.heading })),
     });
   }
-  const dataTocItems = [];
-  if (!hasChildren && node.specs && node.specs.length > 0) {
-    dataTocItems.push({ id: "key-data", label: "Key Data" });
-  }
-  if (isGrouped) {
-    // A product can mix grouped and ungrouped tables — groupDataTables()
-    // buckets any table with no `group` under the key `null`. Give that
-    // bucket the same fallback id/label the fully-ungrouped case below
-    // uses, instead of slugifying `null`.
-    for (const { group } of dataTableGroups) {
-      dataTocItems.push({
-        id: group ? slugify(group) : "technical-data",
-        label: group || "Technical Data",
-      });
+
+  if (!hasChildren && node.table_of_contents && node.table_of_contents.length > 0) {
+    // Scraper-provided TOC has richer, more specific labels than the
+    // group-name fallback below — but only keep entries that resolve to
+    // an id that's actually rendered somewhere on this page.
+    const items = node.table_of_contents
+      .map((entry) => ({ id: slugify(entry.label), label: entry.label }))
+      .filter((item) => renderedSectionIds.has(item.id));
+    if (items.length > 0) {
+      tocGroups.push({ label: node.guide ? "Technical Data" : null, items });
     }
-  } else if (dataTableGroups.length && dataTableGroups[0].tables.length) {
-    dataTocItems.push({ id: "technical-data", label: "Technical Data" });
-  }
-  if (dataTocItems.length > 0) {
-    // Only label this cluster when there's a first one to distinguish it from.
-    tocGroups.push({ label: node.guide ? "Technical Data" : null, items: dataTocItems });
+  } else {
+    const dataTocItems = [];
+    if (hasRichSpecs) {
+      dataTocItems.push({ id: "specifications", label: "Specifications" });
+    } else if (!hasChildren && node.specs && node.specs.length > 0) {
+      dataTocItems.push({ id: "key-data", label: "Key Data" });
+    }
+    if (isGrouped) {
+      // A product can mix grouped and ungrouped tables — groupDataTables()
+      // buckets any table with no `group` under the key `null`. Give that
+      // bucket the same fallback id/label the fully-ungrouped case below
+      // uses, instead of slugifying `null`.
+      for (const { group } of dataTableGroups) {
+        dataTocItems.push({
+          id: group ? slugify(group) : "technical-data",
+          label: group || "Technical Data",
+        });
+      }
+    } else if (dataTableGroups.length && dataTableGroups[0].tables.length) {
+      dataTocItems.push({ id: "technical-data", label: "Technical Data" });
+    }
+    if (dataTocItems.length > 0) {
+      tocGroups.push({ label: node.guide ? "Technical Data" : null, items: dataTocItems });
+    }
   }
   const tocItemCount = tocGroups.reduce((sum, g) => sum + g.items.length, 0);
 
@@ -201,7 +198,19 @@ export default function CatalogNodePage({ params }) {
           </ScrollReveal>
           <ScrollReveal delay={0.05}>
             <div className="mt-5 flex items-start gap-4 sm:gap-5">
-              {!node.image && <IconTile type={node.icon} size="sm" />}
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-graphite-700 bg-graphite-800 sm:h-20 sm:w-20">
+                <ImageWithFallback
+                  src={heroImage?.src}
+                  alt={heroImage?.alt || node.name}
+                  className="object-cover"
+                  sizes="80px"
+                  fallback={
+                    <div className="flex h-full w-full items-center justify-center">
+                      <IconTile type={node.icon} size="sm" />
+                    </div>
+                  }
+                />
+              </div>
               <div>
                 <h1 className="font-display text-3xl font-bold uppercase leading-[0.95] text-paper sm:text-5xl lg:text-6xl">
                   {node.name}
@@ -230,6 +239,8 @@ export default function CatalogNodePage({ params }) {
           )}
         </div>
       </section>
+
+      <CatalogueDownload />
 
       {tocItemCount > 2 && (
         <section className="section bg-paper !py-8">
@@ -336,7 +347,7 @@ export default function CatalogNodePage({ params }) {
       )}
 
       {node.gallery && node.gallery.length > 0 && (
-        <Gallery images={node.gallery} nodeName={node.name} />
+        <Gallery images={node.gallery} nodeName={node.name} icon={node.icon} />
       )}
 
       {node.guide && (
@@ -362,7 +373,51 @@ export default function CatalogNodePage({ params }) {
         </section>
       )}
 
-      {!hasChildren && node.specs && node.specs.length > 0 && (
+      {hasRichSpecs && (
+        <section id="specifications" className="section scroll-mt-24 bg-paper">
+          <div className="wrap max-w-3xl">
+            <SectionHeading eyebrow="Specification" title="Features & Applications" />
+            <div className="mt-10 space-y-10">
+              {node.specification_order.map((key) => {
+                const items = node.specifications[key];
+                if (!items || items.length === 0) return null;
+                return (
+                  <div key={key} id={slugify(key)} className="scroll-mt-24">
+                    <h3 className="font-display text-xl font-bold uppercase tracking-tight text-graphite-900">
+                      {key}
+                    </h3>
+                    <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
+                      {items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-base text-graphite-700">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brass-500" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+            {node.variants && node.variants.length > 0 && (
+              <div className="mt-10">
+                <p className="mb-3 font-mono text-sm uppercase tracking-wide text-graphite-500">Available As</p>
+                <div className="flex flex-wrap gap-2">
+                  {node.variants.map((v) => (
+                    <span
+                      key={v}
+                      className="border border-graphite-200 bg-mist-50 px-3 py-1.5 text-sm text-graphite-700"
+                    >
+                      {v}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {!hasRichSpecs && !hasChildren && node.specs && node.specs.length > 0 && (
         <section id="key-data" className="section scroll-mt-24 bg-paper">
           <div className="wrap max-w-3xl">
             <SectionHeading eyebrow="Specification" title="Key Data" />
@@ -415,14 +470,16 @@ export default function CatalogNodePage({ params }) {
         </section>
       )}
 
-      {!hasChildren && node.dataTables && node.dataTables.length > 0 && (
+      {!hasChildren && filteredDataTables.length > 0 && (
         <section id={isGrouped ? undefined : "technical-data"} className="section scroll-mt-24 bg-mist-50">
           <div className="wrap max-w-4xl">
             <SectionHeading eyebrow="Technical Data" title="Full Specifications" />
 
             <div className="mt-8 space-y-10">
               {!isGrouped &&
-                dataTableGroups[0]?.tables.map((t) => <DataTable key={t.title} table={t} />)}
+                dataTableGroups[0]?.tables.map((t) => (
+                  <DataTable key={t.title} table={t} id={slugify(t.title)} />
+                ))}
 
               {isGrouped &&
                 dataTableGroups.map(({ group, tables }) => {
@@ -446,7 +503,7 @@ export default function CatalogNodePage({ params }) {
                       </summary>
                       <div className="mt-6 space-y-10 pl-5">
                         {tables.map((t) => (
-                          <DataTable key={t.title} table={t} />
+                          <DataTable key={t.title} table={t} id={slugify(t.title)} />
                         ))}
                       </div>
                     </details>
@@ -465,18 +522,18 @@ export default function CatalogNodePage({ params }) {
                 <div className="spec-card__strip">
                   <span>{node.name}</span>
                 </div>
-                <div className="flex aspect-square items-center justify-center bg-graphite-900 p-10">
-                  {node.image ? (
-                    <Image
-                      src={node.image}
-                      alt={node.name}
-                      width={480}
-                      height={480}
-                      className="h-full w-full object-contain"
-                    />
-                  ) : (
-                    <IconTile type={node.icon} size="lg" />
-                  )}
+                <div className="relative aspect-square bg-graphite-900 p-10">
+                  <ImageWithFallback
+                    src={heroImage?.src}
+                    alt={heroImage?.alt || node.name}
+                    className="object-contain"
+                    sizes="(min-width: 1024px) 400px, 90vw"
+                    fallback={
+                      <div className="flex h-full w-full items-center justify-center">
+                        <IconTile type={node.icon} size="lg" />
+                      </div>
+                    }
+                  />
                 </div>
               </div>
             </ScrollReveal>
@@ -485,7 +542,7 @@ export default function CatalogNodePage({ params }) {
                 <SectionHeading
                   eyebrow="Get a Price"
                   title="Request a quote for this item"
-                  description="Tell us the grade, size, quantity and standard you need, and we'll confirm stock and pricing — usually the same working day."
+                  description="Specify the grade, size, quantity and governing standard, and we'll confirm stock and pricing — typically within the same working day."
                 />
                 <Link
                   href={`/contact?product=${encodeURIComponent(node.name)}`}
