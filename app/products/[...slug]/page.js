@@ -198,11 +198,11 @@ const heroImage = node.hero_image
           </ScrollReveal>
           <ScrollReveal delay={0.05}>
             <div className="mt-5 flex items-start gap-4 sm:gap-5">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-graphite-700 bg-graphite-800 sm:h-20 sm:w-20">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-graphite-700 bg-paper sm:h-20 sm:w-20">
                 <ImageWithFallback
                   src={heroImage?.src}
                   alt={heroImage?.alt || node.name}
-                  className="object-cover"
+                  className="object-contain"
                   sizes="80px"
                   fallback={
                     <div className="flex h-full w-full items-center justify-center">
@@ -522,7 +522,7 @@ const heroImage = node.hero_image
                 <div className="spec-card__strip">
                   <span>{node.name}</span>
                 </div>
-                <div className="relative aspect-square bg-graphite-900 p-10">
+                <div className="relative aspect-square bg-paper p-10">
                   <ImageWithFallback
                     src={heroImage?.src}
                     alt={heroImage?.alt || node.name}
