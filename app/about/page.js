@@ -13,6 +13,7 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 import { Truck, ScanSearch, Settings2, PackageCheck } from "lucide-react";
 import { company } from "@/data/company";
 import { catalog } from "@/data/catalog";
+import { categoryImages } from "@/data/categoryImages";
 import { siteUrl } from "@/data/siteConfig";
 
 export const metadata = {
@@ -44,6 +45,11 @@ const showcaseCategories = catalog
   .filter((node) => showcaseSlugs.includes(node.slug))
   .map((node) => ({
     ...node,
+    // Same per-category photo the homepage's ProductShowcase uses (from
+    // the shared data/categoryImages.js), since top-level nodes don't
+    // have their own hero_image/image — CatalogCard's fallback chain
+    // takes it from here if this is also missing.
+    image: node.image || categoryImages[node.slug],
     description: `${countProductPages(node)} products stocked, across ${node.children.length} grades & types`,
   }));
 

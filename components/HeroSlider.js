@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Images live in /public/slides/ — Next.js serves everything in /public
 // from the site root, so the src path is /slides/filename.jpg, never
@@ -11,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // the served URL, only in the filesystem before build).
 const slides = [
   {
-    src: "/slides/seamless-steel-pipe.jpg",
+    src: "/slides/seamless-steel-pipe.png",
     alt: "Stainless and alloy steel pipes and tubes stocked at Om Poonam Metal Overseas",
     label: "Pipe & Tube",
     caption: "Seamless & welded, in stainless, alloy and duplex grades",
@@ -25,21 +26,21 @@ const slides = [
     href: "/products/pipe-fittings",
   },
   {
-    src: "/slides/flanges.jpg",
+    src: "/slides/flanges.png",
     alt: "Stainless and alloy steel flanges in stock",
     label: "Flanges",
     caption: "Weld neck, slip-on, blind and specialty types",
     href: "/products/flanges",
   },
   {
-    src: "/slides/sheet-plate.jpg",
+    src: "/slides/sheet-plate.png",
     alt: "Stainless steel sheet, plate and coil stock",
     label: "Sheet, Plate & Coil",
     caption: "Mill finish through to chequered and patterned stock",
     href: "/products/sheet-and-plate",
   },
   {
-    src: "/slides/cold-drawn-welded-tubes.jpg",
+    src: "/slides/cold-drawn-welded-tubes.png",
     alt: "Cold drawn welded stainless and alloy steel tubing",
     label: "Pipe & Tube",
     caption: "Cold drawn welded (CDW) tubing to precision OD & wall thickness",
@@ -188,6 +189,9 @@ export default function HeroSlider() {
     return () => clearInterval(id);
   }, [paused]);
 
+  const showPrev = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
+  const showNext = () => setIndex((i) => (i + 1) % slides.length);
+
   const slide = slides[index];
   const Transition = TRANSITIONS[index % TRANSITIONS.length];
 
@@ -209,6 +213,24 @@ export default function HeroSlider() {
           aria-hidden="true"
         />
       </div>
+
+      {/* Prev / next controls */}
+      <button
+        type="button"
+        onClick={showPrev}
+        aria-label="Previous slide"
+        className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-paper backdrop-blur-sm transition-colors hover:bg-black/50 sm:left-5 sm:h-12 sm:w-12"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        type="button"
+        onClick={showNext}
+        aria-label="Next slide"
+        className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-paper backdrop-blur-sm transition-colors hover:bg-black/50 sm:right-5 sm:h-12 sm:w-12"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
 
       <div className="wrap absolute inset-x-0 bottom-0 pb-8 sm:pb-10 lg:pb-14">
         <AnimatePresence mode="wait">
@@ -232,7 +254,7 @@ export default function HeroSlider() {
       </div>
 
       <div
-        className="absolute right-5 top-5 flex gap-1.5 sm:right-8 sm:top-8"
+        className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-1.5 sm:bottom-8"
         role="tablist"
         aria-label="Product highlights"
       >

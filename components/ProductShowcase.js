@@ -5,6 +5,7 @@ import ImageWithFallback from "./ImageWithFallback";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeading from "./SectionHeading";
 import { catalog, countLeafTypes } from "@/data/catalog";
+import { categoryImages, GENERIC_FALLBACK_IMAGE } from "@/data/categoryImages";
 
 // The homepage's main visual answer to "what does Om Poonam actually
 // sell" — every top-level category shown large, with its own graphic,
@@ -12,30 +13,19 @@ import { catalog, countLeafTypes } from "@/data/catalog";
 // product showcase; ProductsTeaser and CatalogScale further down go
 // deeper on grades and numbers respectively.
 //
-// PLACEHOLDER IMAGES — drop real (your own, or properly licensed) photos
-// into /public/images/products/ using these exact filenames and each
-// card switches over automatically:
-//   pipe-and-tube.jpg · pipe-fittings.jpg · flanges.jpg ·
-//   sheet-and-plate.jpg · round-bars.jpg
-// If a filename below doesn't exist yet in /public, ImageWithFallback
-// catches the load error at runtime and shows the icon tile instead —
-// safe to leave entries in this map ahead of the actual files landing.
+// Image fallback chain, three deep:
+//   1. category.image (a manually-set real photo) or the shared
+//      per-category path from data/categoryImages.js.
+//   2. GENERIC_FALLBACK_IMAGE — one shared placeholder photo, if a
+//      specific category image is missing/hasn't landed yet.
+//   3. IconTile — if even the generic fallback file is missing, so the
+//      card never shows a broken image.
 //
 // Deliberately NOT falling back to catalog.js's scraped `gallery` data:
-// every populated gallery URL in the current catalog points directly at
-// ashtapad.co.in's own image server, so using it here would mean
-// hotlinking a competitor's photos onto the homepage. A manually-set
-// `category.image` (a real photo you've hosted yourself) still takes
-// priority over the placeholder map below, if you'd rather set it there
-// instead of here.
-const categoryImages = {
-  "pipe-and-tube": "/images/ashtapad/ss-310-seamless-pipe.jpg",
-  "pipe-fittings": "/images/ashtapad/1-1-4-stainless-steel-pipe-fittings.jpg",
-  flanges: "/images/ashtapad/304-stainless-steel-flange.jpg",
-  "sheet-and-plate": "/images/ashtapad/0.5-mm-stainless-steel-sheet.jpg",
-  "round-bars": "/images/ashtapad/825-inconel-round-bar.jpg",
-};
-
+// some populated gallery URLs in the catalog still point directly at
+// ashtapad.co.in's own image server (for nodes not yet re-scraped with
+// the newer local-path pipeline), so using it here risks hotlinking a
+// competitor's photo onto the homepage.
 export default function ProductShowcase() {
   return (
     <section className="section bg-paper">
@@ -63,9 +53,17 @@ export default function ProductShowcase() {
                       className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                       sizes="(min-width: 1024px) 220px, 45vw"
                       fallback={
-                        <div className="transition-transform duration-300 group-hover:scale-105">
-                          <IconTile type={category.icon} size="md" />
-                        </div>
+                        <ImageWithFallback
+                          src={GENERIC_FALLBACK_IMAGE}
+                          alt={category.name}
+                          className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 220px, 45vw"
+                          fallback={
+                            <div className="transition-transform duration-300 group-hover:scale-105">
+                              <IconTile type={category.icon} size="md" />
+                            </div>
+                          }
+                        />
                       }
                     />
                   </div>

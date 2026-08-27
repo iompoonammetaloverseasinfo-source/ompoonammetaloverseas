@@ -440710,10 +440710,10 @@ export const catalog = [
         ],
         "gallery": [
           {
-            "url": "/images/purohit/Con.png",
+            "url": "/images/purohit/conn.png",
             "alt": null,
             "caption": null,
-            "local_path": "/images/purohit/Con.png"
+            "local_path": "/images/purohit/conn.png"
           },
           {
             "url": "/images/purohit/side.png",
@@ -440724,10 +440724,10 @@ export const catalog = [
         ],
         "images": [
           {
-            "url": "/images/purohit/Con.png",
+            "url": "/images/purohit/conn.png",
             "alt": null,
             "title": null,
-            "local_path": "/images/purohit/Con.png"
+            "local_path": "/images/purohit/conn.png"
           },
           {
             "url": "/images/purohit/side.png",
@@ -440737,12 +440737,12 @@ export const catalog = [
           }
         ],
         "hero_image": {
-          "url": "/images/purohit/Con.png",
+          "url": "/images/purohit/conn.png",
           "alt": null,
           "title": null,
-          "local_path": "/images/purohit/Con.png"
+          "local_path": "/images/purohit/conn.png"
         },
-        "image": "/images/purohit/Con.png"
+        "image": "/images/purohit/conn.png"
       },
       {
         "slug": "knife-gate-valve",

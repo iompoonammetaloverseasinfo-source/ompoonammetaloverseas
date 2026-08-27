@@ -19,7 +19,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Send us the spec"
+        title="Get a Quote"
         description="Grade, form, size and quantity — that's all we need to confirm stock and quote. Reach us directly, or use the form below."
       />
 
