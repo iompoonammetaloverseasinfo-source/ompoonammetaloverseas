@@ -2,27 +2,28 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import IconTile from "./IconTile";
 import ImageWithFallback from "./ImageWithFallback";
+import { GENERIC_FALLBACK_IMAGE } from "@/data/categoryImages";
 
 export default function CatalogCard({ href, node }) {
   const childCount = node.children?.length;
 
-  // Image priority: a real manually-set photo (node.image) wins, then the
-  // first scraped gallery shot (node.gallery[0]), then fall back to the
-  // icon tile. Most nodes will only ever have the gallery photo since
-  // node.image is a manual step — this is what makes the scrape alone
-  // enough to get real product photos on the grid instead of icons.
+  // Image priority: hero_image (from the latest scrape — richer object
+  // with real alt text and an already-local path) wins, then a manually-set
+  // node.image, then the first scraped gallery shot, then one shared
+  // generic fallback photo, then finally the icon tile.
   //
-  // NOTE: scraped gallery URLs in the current catalog.js point at
-  // ashtapad.co.in's own image server — those are being replaced with
-  // locally-hosted photos over time. ImageWithFallback catches any
-  // broken/missing src at runtime (a local path that isn't uploaded yet,
-  // or a stale reference URL) and drops back to the icon tile instead of
-  // showing a broken image.
-  const photo = node.image
-    ? { src: node.image, alt: node.name }
-    : node.gallery?.[0]
-      ? { src: node.gallery[0].url, alt: node.gallery[0].alt || node.name }
-      : null;
+  // NOTE: scraped gallery URLs in catalog.js may still point at
+  // ashtapad.co.in's own image server for nodes not yet re-scraped with
+  // the newer local-path pipeline — ImageWithFallback catches any
+  // broken/missing src at runtime and drops back through the chain
+  // instead of showing a broken image.
+  const photo = node.hero_image
+    ? { src: node.hero_image.local_path || node.hero_image.url, alt: node.hero_image.alt || node.name }
+    : node.image
+      ? { src: node.image, alt: node.name }
+      : node.gallery?.[0]
+        ? { src: node.gallery[0].url, alt: node.gallery[0].alt || node.name }
+        : null;
 
   const grades = node.grades?.length ? node.grades : null;
 
@@ -39,9 +40,17 @@ export default function CatalogCard({ href, node }) {
           className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
           sizes="(min-width: 1024px) 300px, 45vw"
           fallback={
-            <div className="transition-transform duration-300 group-hover:scale-105">
-              <IconTile type={node.icon} size="md" />
-            </div>
+            <ImageWithFallback
+              src={GENERIC_FALLBACK_IMAGE}
+              alt={node.name}
+              className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              sizes="(min-width: 1024px) 300px, 45vw"
+              fallback={
+                <div className="transition-transform duration-300 group-hover:scale-105">
+                  <IconTile type={node.icon} size="md" />
+                </div>
+              }
+            />
           }
         />
       </div>

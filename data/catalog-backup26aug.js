@@ -380684,7 +380684,7 @@ export const catalog = [
         ],
         "gallery": [
           {
-            "url": "https://purohitfittings.com/img/Con.png",
+            "url": "https://purohitfittings.com/img/conn.png",
             "alt": null,
             "caption": null,
             "local_path": null

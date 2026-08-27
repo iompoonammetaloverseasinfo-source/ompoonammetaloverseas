@@ -240,7 +240,7 @@ const heroImage = node.hero_image
         </div>
       </section>
 
-      <CatalogueDownload />
+      {/* <CatalogueDownload /> */}
 
       {tocItemCount > 2 && (
         <section className="section bg-paper !py-8">

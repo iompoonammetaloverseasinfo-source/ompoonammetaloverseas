@@ -7,6 +7,7 @@ import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { productFamilies } from "@/data/products";
 import { catalog } from "@/data/catalog";
+import { categoryImages } from "@/data/categoryImages";
 import { siteUrl } from "@/data/siteConfig";
 import JsonLd from "@/components/JsonLd";
 
@@ -28,6 +29,16 @@ const productJsonLd = {
     url: `${siteUrl}/products/${f.slug}`,
   })),
 };
+
+// Top-level category nodes (Pipe & Tube, Flanges, etc.) don't have their
+// own hero_image/image — they're organisational groupings, not
+// individual products — so the same curated categoryImages map used on
+// the Home and About pages is injected here too, keeping this grid
+// visually consistent with how each category is shown everywhere else.
+const catalogWithImages = catalog.map((node) => ({
+  ...node,
+  image: node.image || categoryImages[node.slug],
+}));
 
 export default function ProductsPage() {
   return (
@@ -55,7 +66,7 @@ export default function ProductsPage() {
             description="Every category opens into its full range of types — tap through to find the exact one you need."
           />
           <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {catalog.map((node) => (
+            {catalogWithImages.map((node) => (
               <ScrollReveal key={node.slug}>
                 <CatalogCard href={`/products/${node.slug}`} node={node} />
               </ScrollReveal>
