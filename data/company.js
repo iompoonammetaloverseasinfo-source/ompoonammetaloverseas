@@ -29,19 +29,22 @@ export const company = {
   },
 
   contact: {
-    phoneDisplay: "+91 97849 79607",
-    phoneE164: "+919784979607",
+    phoneDisplay: "+91 93240 06771",
+    phoneE164: "+919324006771",
     // Printed on every page of the firm's official print catalogue
     // (shared with group concern Vardhman Steel India on the back
-    // cover). Kept as clearly-labelled secondary numbers rather than
-    // replacing the primary above, since it wasn't specified which line
-    // is actively monitored for calls/WhatsApp — surface these wherever
-    // "alternate contact" makes sense, without touching the primary
-    // phoneDisplay/phoneE164/whatsapp fields anything else already reads.
+    // cover). Kept as clearly-labelled secondary numbers alongside the
+    // primary above.
     alternatePhones: [
-      { display: "+91 93240 06771", e164: "+919324006771" },
+      { display: "+91 97849 79607", e164: "+919784979607" },
       { display: "+91 79778 39113", e164: "+917977839113" },
     ],
+    // NOTE: left pointing at the old primary number — this hasn't been
+    // confirmed as WhatsApp-enabled, so it wasn't changed automatically
+    // when the primary phone number switched. Update this to
+    // "919324006771" once you've confirmed WhatsApp is active on the new
+    // primary number, otherwise the WhatsApp button will message a
+    // different number than the one now shown as primary.
     whatsapp: "919784979607",
     email: "exportompmo@gmail.com",
     // Makes the contact form actually send email instead of just opening
