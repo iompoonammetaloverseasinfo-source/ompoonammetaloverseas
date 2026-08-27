@@ -33,17 +33,17 @@ export default function CatalogCard({ href, node }) {
         <span className="truncate">{node.name}</span>
         {childCount ? <span>{childCount}</span> : null}
       </div>
-      <div className="relative flex aspect-[4/3] items-center justify-center bg-graphite-900">
+      <div className="relative flex aspect-[4/3] items-center justify-center bg-paper">
         <ImageWithFallback
           src={photo?.src}
           alt={photo?.alt || node.name}
-          className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+          className="object-contain transition-transform duration-300 group-hover:scale-105"
           sizes="(min-width: 1024px) 300px, 45vw"
           fallback={
             <ImageWithFallback
               src={GENERIC_FALLBACK_IMAGE}
               alt={node.name}
-              className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
               sizes="(min-width: 1024px) 300px, 45vw"
               fallback={
                 <div className="transition-transform duration-300 group-hover:scale-105">

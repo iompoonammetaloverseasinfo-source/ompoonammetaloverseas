@@ -57,14 +57,14 @@ export default function Gallery({ images, nodeName, icon }) {
               <button
                 type="button"
                 onClick={() => setLightboxIndex(i)}
-                className="relative block aspect-square w-full overflow-hidden border border-graphite-100 bg-mist-50"
+                className="relative block aspect-square w-full overflow-hidden border border-graphite-100 bg-paper"
                 aria-label={`View ${img.alt || img.caption || nodeName} full size`}
               >
                 <ImageWithFallback
                   src={img.url}
                   alt={img.alt || img.caption || nodeName}
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
+                  className="object-contain transition-transform duration-300 hover:scale-105"
                   fallback={
                     <div className="flex h-full w-full items-center justify-center">
                       <IconTile type={icon} size="md" />
@@ -93,7 +93,7 @@ export default function Gallery({ images, nodeName, icon }) {
             <button
               type="button"
               onClick={close}
-              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-paper/80 transition-colors hover:text-paper sm:right-6 sm:top-6"
+              className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center text-paper/80 transition-colors hover:text-paper sm:right-6 sm:top-6"
               aria-label="Close"
             >
               <X className="h-7 w-7" />
@@ -107,7 +107,7 @@ export default function Gallery({ images, nodeName, icon }) {
                     e.stopPropagation();
                     showPrev();
                   }}
-                  className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-paper/80 transition-colors hover:text-paper sm:left-6"
+                  className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-graphite-950/60 text-paper/90 transition-colors hover:bg-graphite-950/80 hover:text-paper sm:left-6 sm:bg-transparent sm:hover:bg-transparent"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="h-8 w-8" />
@@ -118,7 +118,7 @@ export default function Gallery({ images, nodeName, icon }) {
                     e.stopPropagation();
                     showNext();
                   }}
-                  className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-paper/80 transition-colors hover:text-paper sm:right-6"
+                  className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-graphite-950/60 text-paper/90 transition-colors hover:bg-graphite-950/80 hover:text-paper sm:right-6 sm:bg-transparent sm:hover:bg-transparent"
                   aria-label="Next image"
                 >
                   <ChevronRight className="h-8 w-8" />
@@ -133,7 +133,7 @@ export default function Gallery({ images, nodeName, icon }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.2 }}
-                className="relative flex max-h-full max-w-full flex-col items-center"
+                className="relative z-10 flex max-h-full max-w-full flex-col items-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {lightboxError ? (
@@ -146,7 +146,7 @@ export default function Gallery({ images, nodeName, icon }) {
                     src={active.url}
                     alt={active.alt || active.caption || nodeName}
                     onError={() => setLightboxError(true)}
-                    className="max-h-[80vh] max-w-[90vw] object-contain"
+                    className="max-h-[80vh] max-w-[78vw] object-contain sm:max-w-[85vw]"
                   />
                 )}
                 {(active.alt || active.caption) && !lightboxError && (
