@@ -10,6 +10,10 @@ import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import ImageWithFallback from "@/components/ImageWithFallback";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import CertificateStamp from "@/components/CertificateStamp";
+import StatUnderline from "@/components/StatUnderline";
+import LockConnector from "@/components/LockConnector";
 import { Truck, ScanSearch, Settings2, PackageCheck } from "lucide-react";
 import { company } from "@/data/company";
 import { catalog } from "@/data/catalog";
@@ -92,6 +96,18 @@ const yardImages = [
   { url: "/images/about/logistics-dispatch-3.png", alt: "Flanges packed for shipment", icon: Truck },
 ];
 
+// Headline numbers, shown big. The 35+ years figure belongs to the
+// founder/proprietor's personal industry background, confirmed directly
+// — not OPMO's own age (the firm itself was founded in company.founded,
+// 2021, a separately and accurately stated fact elsewhere on this page).
+// The label says "Founder's" explicitly so it can't be misread as a
+// claim about how long OPMO itself has existed.
+const headlineStats = [
+  { number: 35, suffix: "+", label: "Years of Founder's Industry Experience" },
+  { number: 20, suffix: "+", label: "Companies We Work With" },
+  { number: 20, suffix: "+", label: "Countries We Supply To" },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -100,6 +116,32 @@ export default function AboutPage() {
         title="Piping, tubing and metal — verified before it ships"
         description="A proprietorship-run stockist and trading house in Ahmedabad, Gujarat, specialising in piping, tubing and metal products — stainless, carbon, alloy and duplex steel, nickel alloys and non-ferrous metal, in pipe, tube, sheet and fitting form — to fabricators, EPC contractors and re-rollers across India and abroad."
       />
+
+      {/* Headline numbers — big, immediate credibility signal right under
+          the hero, before any narrative. The certificate stamp sits as a
+          large rotated watermark behind them: this page's whole pitch is
+          verification, so the signature motif earns its place here
+          first. */}
+      <section className="relative section !py-12 overflow-hidden bg-graphite-900">
+        <div className="pointer-events-none absolute -right-8 -top-8 text-graphite-700 sm:right-8 sm:top-8">
+          <CertificateStamp size={180} rotation={-12} opacity={0.35} />
+        </div>
+        <div className="wrap relative grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {headlineStats.map((s, i) => (
+            <ScrollReveal key={s.label} delay={i * 0.06}>
+              <div className="text-center">
+                <p className="font-display text-5xl font-bold text-brass-400 sm:text-6xl">
+                  <AnimatedCounter value={s.number} suffix={s.suffix} />
+                </p>
+                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-graphite-400 sm:text-sm">
+                  {s.label}
+                </p>
+                <StatUnderline delay={i * 0.06 + 0.3} />
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
       <section className="section bg-paper">
         <div className="wrap max-w-3xl">
@@ -151,17 +193,91 @@ export default function AboutPage() {
                 destination, and an IEC registration that lets an order
                 move past the domestic market when it needs to.
               </p>
-              <p>
-                Today the firm operates alongside its group concern,{" "}
-                {company.groupConcern}, based in Mumbai — extending the
-                same sourcing relationships and reach beyond Ahmedabad
-                alone.
-              </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
             <Timeline />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Group Companies — OPMO shown alongside Vardhman Steel India as
+          two concerns under shared ownership, rather than VSI standing
+          alone as an isolated feature. */}
+      <section className="section bg-mist-50">
+        <div className="wrap">
+          <ScrollReveal>
+            <p className="eyebrow text-center">Group Companies</p>
+            <h2 className="mt-2 text-center font-display text-2xl font-bold uppercase tracking-tight text-graphite-900 sm:text-3xl">
+              Om Poonam Metal Overseas & Vardhman Steel India
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-0">
+            <ScrollReveal className="flex flex-1 flex-col items-center gap-4 border border-graphite-200 bg-paper p-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:max-w-sm">
+              <div className="relative h-20 w-full max-w-[200px]">
+                <ImageWithFallback
+                  src="/logo.jpeg"
+                  alt="Om Poonam Metal Overseas logo"
+                  className="object-contain"
+                  sizes="200px"
+                  fallback={
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span className="font-display text-lg font-bold text-graphite-300">
+                        OPMO
+                      </span>
+                    </div>
+                  }
+                />
+              </div>
+              <div>
+                <h3 className="font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
+                  {company.legalTradeName}
+                </h3>
+                <p className="mt-1 text-sm text-graphite-500">
+                  Ahmedabad, Gujarat · Since {company.founded}
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="flex items-center justify-center py-2 sm:px-6 sm:py-0">
+              <LockConnector />
+            </div>
+
+            <ScrollReveal delay={0.06} className="flex flex-1 flex-col items-center gap-4 border border-graphite-200 bg-paper p-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:max-w-sm">
+              <div className="relative h-20 w-full max-w-[200px]">
+                <ImageWithFallback
+                  src="/images/vardhman-steel-india-logo.jpg"
+                  alt="Vardhman Steel India logo"
+                  className="object-contain"
+                  sizes="200px"
+                  fallback={
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span className="font-display text-lg font-bold text-graphite-300">
+                        VSI
+                      </span>
+                    </div>
+                  }
+                />
+              </div>
+              <div>
+                <h3 className="font-display text-lg font-bold uppercase tracking-tight text-graphite-900">
+                  Vardhman Steel India
+                </h3>
+                <p className="mt-1 text-sm text-graphite-500">
+                  Mumbai, Maharashtra · Since 2018
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal delay={0.1}>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-base leading-relaxed text-graphite-600">
+              Two concerns under shared ownership, extending the same
+              sourcing relationships and reach from Ahmedabad to Mumbai
+              and beyond.
+            </p>
           </ScrollReveal>
         </div>
       </section>
@@ -246,15 +362,20 @@ export default function AboutPage() {
           actual documents underneath for anyone who wants to verify. */}
       <section className="section bg-mist-50">
         <div className="wrap max-w-4xl">
-          <SectionHeading
-            eyebrow="The Paperwork"
-            title="Every credential, on the record"
-            description="Documents are available for verification on request. Registration numbers below; the certificates themselves are further down this page."
-          />
+          <div className="flex items-start gap-5">
+            <div className="hidden shrink-0 text-brass-500 sm:block">
+              <CertificateStamp size={64} rotation={-6} />
+            </div>
+            <SectionHeading
+              eyebrow="The Paperwork"
+              title="Every credential, on the record"
+              description="Documents are available for verification on request. Registration numbers below; the certificates themselves are further down this page."
+            />
+          </div>
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
             <ScrollReveal>
-              <div className="border border-graphite-200 bg-paper p-5">
+              <div className="border border-graphite-200 bg-paper p-5 transition-transform duration-200 hover:-translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-wide text-graphite-400">
                   {company.certification.standard}
                 </p>
@@ -264,7 +385,7 @@ export default function AboutPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.04}>
-              <div className="border border-graphite-200 bg-paper p-5">
+              <div className="border border-graphite-200 bg-paper p-5 transition-transform duration-200 hover:-translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-wide text-graphite-400">GSTIN</p>
                 <p className="mt-1.5 font-display text-base font-bold text-graphite-900 sm:text-lg">
                   {company.registrations.gstin}
@@ -272,7 +393,7 @@ export default function AboutPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.08}>
-              <div className="border border-graphite-200 bg-paper p-5">
+              <div className="border border-graphite-200 bg-paper p-5 transition-transform duration-200 hover:-translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-wide text-graphite-400">
                   Importer-Exporter Code
                 </p>
@@ -282,7 +403,7 @@ export default function AboutPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.12}>
-              <div className="border border-graphite-200 bg-paper p-5">
+              <div className="border border-graphite-200 bg-paper p-5 transition-transform duration-200 hover:-translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-wide text-graphite-400">
                   Udyam ({company.registrations.udyamType})
                 </p>
@@ -292,7 +413,7 @@ export default function AboutPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.16}>
-              <div className="border border-graphite-200 bg-paper p-5">
+              <div className="border border-graphite-200 bg-paper p-5 transition-transform duration-200 hover:-translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-wide text-graphite-400">
                   Accreditation
                 </p>
