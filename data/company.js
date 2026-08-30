@@ -36,7 +36,6 @@ export const company = {
     // cover). Kept as clearly-labelled secondary numbers alongside the
     // primary above.
     alternatePhones: [
-      { display: "+91 97849 79607", e164: "+919784979607" },
       { display: "+91 79778 39113", e164: "+917977839113" },
     ],
     // NOTE: left pointing at the old primary number — this hasn't been
@@ -45,7 +44,7 @@ export const company = {
     // "919324006771" once you've confirmed WhatsApp is active on the new
     // primary number, otherwise the WhatsApp button will message a
     // different number than the one now shown as primary.
-    whatsapp: "919784979607",
+    whatsapp: "919324006771",
     email: "exportompmo@gmail.com",
     // Makes the contact form actually send email instead of just opening
     // the visitor's own email app. Free, no account needed:
