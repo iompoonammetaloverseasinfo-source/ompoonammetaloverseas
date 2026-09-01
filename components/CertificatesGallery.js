@@ -43,6 +43,15 @@ const certificates = [
     height: 1811,
     alt: "Udyam (MSME) Registration Certificate — Om Poonam Metal Overseas",
   },
+  {
+    key: "vsi-gst",
+    label: "VSI · GST Registration",
+    sub: "27ATBPP2924Q1Z6",
+    src: "/images/vardhman-steel-india-gst-certificate.jpg",
+    width: 1240,
+    height: 1755,
+    alt: "GST Registration Certificate — Vardhman Steel India",
+  },
 ];
 
 export default function CertificatesGallery() {

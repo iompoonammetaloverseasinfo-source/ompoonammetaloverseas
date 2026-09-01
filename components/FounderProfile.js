@@ -7,8 +7,8 @@ export default function FounderProfile() {
   return (
     <section className="section bg-paper relative overflow-hidden">
       <div className="wrap relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        <ScrollReveal className="lg:col-span-4">
-          <div className="spec-card max-w-xs mx-auto lg:mx-0">
+        <ScrollReveal className="lg:col-span-5">
+          <div className="spec-card max-w-md mx-auto lg:mx-0">
             <div className="spec-card__strip">
               <span>Proprietor</span>
               <span className="text-brass-600">Since 2021</span>
@@ -17,16 +17,16 @@ export default function FounderProfile() {
               <Image
                 src="/images/founder-harachndram-purohit.jpg"
                 alt="Harachndram V. Purohit, Proprietor of Om Poonam Metal Overseas"
-                width={658}
-                height={884}
+                width={1200}
+                height={1600}
                 className="w-full h-auto grayscale-0"
-                sizes="(min-width: 1024px) 320px, 70vw"
+                sizes="(min-width: 1024px) 448px, 90vw"
               />
             </div>
           </div>
         </ScrollReveal>
 
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-7">
           <ScrollReveal>
             <p className="eyebrow text-brass-600">The Founder</p>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold uppercase text-graphite-900 leading-[0.95]">

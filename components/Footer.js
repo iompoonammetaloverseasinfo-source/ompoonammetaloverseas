@@ -40,11 +40,12 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-2">
+               <div className="lg:col-span-2">
           <p className="eyebrow text-brass-600 mb-4">Materials</p>
           <ul className="space-y-2.5 text-sm">
             <li>Stainless Steel</li>
             <li>Alloy &amp; Special Alloys</li>
+            <li>Ferrous Metals</li>
             <li>Non-Ferrous Metals</li>
             <li>Ferro Alloys</li>
           </ul>
