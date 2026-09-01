@@ -248,7 +248,7 @@ export default function AboutPage() {
             <ScrollReveal delay={0.06} className="flex flex-1 flex-col items-center gap-4 border border-graphite-200 bg-paper p-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:max-w-sm">
               <div className="relative h-20 w-full max-w-[200px]">
                 <ImageWithFallback
-                  src="/images/vardhman-steel-india-logo.jpg"
+                  src="/images/partners/vardhman-steel-india-logo.jpg"
                   alt="Vardhman Steel India logo"
                   className="object-contain"
                   sizes="200px"

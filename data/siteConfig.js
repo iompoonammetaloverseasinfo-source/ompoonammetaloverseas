@@ -18,9 +18,8 @@ export const siteConfig = {
   name: "Om Poonam Metal Overseas",
   shortName: "OPMO",
   tagline: "Stockists, Traders & Suppliers of Stainless, Alloy & Non-Ferrous Metals",
-  description:
-    "Om Poonam Metal Overseas is an ISO 9001:2015 certified stockist, trader, importer and exporter of stainless steel, alloy steel and non-ferrous metals, based in Ahmedabad, Gujarat, India.",
-  locale: "en_IN",
+   description:
+    "Om Poonam Metal Overseas is an ISO 9001:2015 certified stockist, trader, importer and exporter of stainless steel, alloy steel, ferrous and non-ferrous metals, based in Ahmedabad, Gujarat, India.",
   themeColor: "#12151B",
 };
 
