@@ -10,6 +10,9 @@ export const categoryImages = {
   flanges: "/images/ashtapad/304-stainless-steel-flange.jpg",
   "sheet-and-plate": "/images/ashtapad/0.5-mm-stainless-steel-sheet.jpg",
   "round-bars": "/images/ashtapad/825-inconel-round-bar.jpg",
+  fasteners: "/images/fasteners/ss-hex-bolt.jpg",
+  valves: "/images/valves/ss-ball-valve.jpg",
+  "other-pages": "/images/purohit/fabrications.jpg",
 };
 
 // Single shared fallback photo shown when a specific image is missing or
