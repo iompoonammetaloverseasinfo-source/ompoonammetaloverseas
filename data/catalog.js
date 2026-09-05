@@ -438223,6 +438223,161 @@ export const catalog = [
             "specification_order": [
               "Stainless Steel Properties"
             ]
+          },
+          {
+            "slug": "ss-hex-bar",
+            "name": "SS Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ss-hex-bar.jpg",
+              "alt": "SS Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ss-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ss-hex-bar-1.jpg",
+                "alt": "SS Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ss-hex-bar-2.jpg",
+                "alt": "SS Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Stainless Steel Properties": [
+                "Corrosion and rust resistant across most industrial and outdoor environments",
+                "Good mechanical strength with a clean, low-maintenance finish"
+              ]
+            },
+            "specification_order": [
+              "Stainless Steel Properties"
+            ]
+          },
+          {
+            "slug": "ss-square-bar",
+            "name": "SS Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ss-square-bar.jpg",
+              "alt": "SS Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ss-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ss-square-bar-1.jpg",
+                "alt": "SS Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ss-square-bar-2.jpg",
+                "alt": "SS Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Stainless Steel Properties": [
+                "Corrosion and rust resistant across most industrial and outdoor environments",
+                "Good mechanical strength with a clean, low-maintenance finish"
+              ]
+            },
+            "specification_order": [
+              "Stainless Steel Properties"
+            ]
+          },
+          {
+            "slug": "ss-flat-bar",
+            "name": "SS Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ss-flat-bar.jpg",
+              "alt": "SS Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ss-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ss-flat-bar-1.jpg",
+                "alt": "SS Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ss-flat-bar-2.jpg",
+                "alt": "SS Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Stainless Steel Properties": [
+                "Corrosion and rust resistant across most industrial and outdoor environments",
+                "Good mechanical strength with a clean, low-maintenance finish"
+              ]
+            },
+            "specification_order": [
+              "Stainless Steel Properties"
+            ]
+          },
+          {
+            "slug": "ss-rectangle-bar",
+            "name": "SS Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ss-rectangle-bar.jpg",
+              "alt": "SS Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ss-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ss-rectangle-bar-1.jpg",
+                "alt": "SS Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ss-rectangle-bar-2.jpg",
+                "alt": "SS Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Stainless Steel Properties": [
+                "Corrosion and rust resistant across most industrial and outdoor environments",
+                "Good mechanical strength with a clean, low-maintenance finish"
+              ]
+            },
+            "specification_order": [
+              "Stainless Steel Properties"
+            ]
+          },
+          {
+            "slug": "ss-bus-bar",
+            "name": "SS Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ss-bus-bar.jpg",
+              "alt": "SS Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ss-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ss-bus-bar-1.jpg",
+                "alt": "SS Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ss-bus-bar-2.jpg",
+                "alt": "SS Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Stainless Steel Properties": [
+                "Corrosion and rust resistant across most industrial and outdoor environments",
+                "Good mechanical strength with a clean, low-maintenance finish"
+              ]
+            },
+            "specification_order": [
+              "Stainless Steel Properties"
+            ]
           }
         ]
       },
@@ -438282,6 +438437,134 @@ export const catalog = [
               {
                 "url": "/images/round-bars/titanium-round-bar-grade-5-2.jpg",
                 "alt": "Titanium Round Bar Grade 5 — view 2"
+              }
+            ],
+            "specifications": {
+              "Titanium Properties": [
+                "Highest strength-to-weight ratio of the materials in this range",
+                "Outstanding resistance to seawater, chlorides and industrial chemicals",
+                "Biocompatible — suited to medical and high-purity applications"
+              ]
+            },
+            "specification_order": [
+              "Titanium Properties"
+            ]
+          },
+          {
+            "slug": "titanium-hex-bar",
+            "name": "Titanium Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/titanium-hex-bar.jpg",
+              "alt": "Titanium Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/titanium-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/titanium-hex-bar-1.jpg",
+                "alt": "Titanium Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/titanium-hex-bar-2.jpg",
+                "alt": "Titanium Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Titanium Properties": [
+                "Highest strength-to-weight ratio of the materials in this range",
+                "Outstanding resistance to seawater, chlorides and industrial chemicals",
+                "Biocompatible — suited to medical and high-purity applications"
+              ]
+            },
+            "specification_order": [
+              "Titanium Properties"
+            ]
+          },
+          {
+            "slug": "titanium-square-bar",
+            "name": "Titanium Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/titanium-square-bar.jpg",
+              "alt": "Titanium Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/titanium-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/titanium-square-bar-1.jpg",
+                "alt": "Titanium Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/titanium-square-bar-2.jpg",
+                "alt": "Titanium Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Titanium Properties": [
+                "Highest strength-to-weight ratio of the materials in this range",
+                "Outstanding resistance to seawater, chlorides and industrial chemicals",
+                "Biocompatible — suited to medical and high-purity applications"
+              ]
+            },
+            "specification_order": [
+              "Titanium Properties"
+            ]
+          },
+          {
+            "slug": "titanium-flat-bar",
+            "name": "Titanium Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/titanium-flat-bar.jpg",
+              "alt": "Titanium Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/titanium-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/titanium-flat-bar-1.jpg",
+                "alt": "Titanium Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/titanium-flat-bar-2.jpg",
+                "alt": "Titanium Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Titanium Properties": [
+                "Highest strength-to-weight ratio of the materials in this range",
+                "Outstanding resistance to seawater, chlorides and industrial chemicals",
+                "Biocompatible — suited to medical and high-purity applications"
+              ]
+            },
+            "specification_order": [
+              "Titanium Properties"
+            ]
+          },
+          {
+            "slug": "titanium-rectangle-bar",
+            "name": "Titanium Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/titanium-rectangle-bar.jpg",
+              "alt": "Titanium Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/titanium-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/titanium-rectangle-bar-1.jpg",
+                "alt": "Titanium Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/titanium-rectangle-bar-2.jpg",
+                "alt": "Titanium Rectangle Bar — view 2"
               }
             ],
             "specifications": {
@@ -438393,6 +438676,161 @@ export const catalog = [
             "specification_order": [
               "Properties"
             ]
+          },
+          {
+            "slug": "duplex-steel-hex-bar",
+            "name": "Duplex Steel Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/duplex-steel-hex-bar.jpg",
+              "alt": "Duplex Steel Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/duplex-steel-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/duplex-steel-hex-bar-1.jpg",
+                "alt": "Duplex Steel Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/duplex-steel-hex-bar-2.jpg",
+                "alt": "Duplex Steel Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Duplex Steel Properties": [
+                "Combines the strength of ferritic steel with the ductility and corrosion resistance of austenitic steel",
+                "Higher resistance to chloride pitting and stress corrosion cracking than standard stainless grades"
+              ]
+            },
+            "specification_order": [
+              "Duplex Steel Properties"
+            ]
+          },
+          {
+            "slug": "duplex-steel-square-bar",
+            "name": "Duplex Steel Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/duplex-steel-square-bar.jpg",
+              "alt": "Duplex Steel Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/duplex-steel-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/duplex-steel-square-bar-1.jpg",
+                "alt": "Duplex Steel Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/duplex-steel-square-bar-2.jpg",
+                "alt": "Duplex Steel Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Duplex Steel Properties": [
+                "Combines the strength of ferritic steel with the ductility and corrosion resistance of austenitic steel",
+                "Higher resistance to chloride pitting and stress corrosion cracking than standard stainless grades"
+              ]
+            },
+            "specification_order": [
+              "Duplex Steel Properties"
+            ]
+          },
+          {
+            "slug": "duplex-steel-flat-bar",
+            "name": "Duplex Steel Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/duplex-steel-flat-bar.jpg",
+              "alt": "Duplex Steel Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/duplex-steel-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/duplex-steel-flat-bar-1.jpg",
+                "alt": "Duplex Steel Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/duplex-steel-flat-bar-2.jpg",
+                "alt": "Duplex Steel Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Duplex Steel Properties": [
+                "Combines the strength of ferritic steel with the ductility and corrosion resistance of austenitic steel",
+                "Higher resistance to chloride pitting and stress corrosion cracking than standard stainless grades"
+              ]
+            },
+            "specification_order": [
+              "Duplex Steel Properties"
+            ]
+          },
+          {
+            "slug": "duplex-steel-rectangle-bar",
+            "name": "Duplex Steel Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/duplex-steel-rectangle-bar.jpg",
+              "alt": "Duplex Steel Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/duplex-steel-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/duplex-steel-rectangle-bar-1.jpg",
+                "alt": "Duplex Steel Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/duplex-steel-rectangle-bar-2.jpg",
+                "alt": "Duplex Steel Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Duplex Steel Properties": [
+                "Combines the strength of ferritic steel with the ductility and corrosion resistance of austenitic steel",
+                "Higher resistance to chloride pitting and stress corrosion cracking than standard stainless grades"
+              ]
+            },
+            "specification_order": [
+              "Duplex Steel Properties"
+            ]
+          },
+          {
+            "slug": "duplex-steel-bus-bar",
+            "name": "Duplex Steel Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/duplex-steel-bus-bar.jpg",
+              "alt": "Duplex Steel Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/duplex-steel-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/duplex-steel-bus-bar-1.jpg",
+                "alt": "Duplex Steel Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/duplex-steel-bus-bar-2.jpg",
+                "alt": "Duplex Steel Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Duplex Steel Properties": [
+                "Combines the strength of ferritic steel with the ductility and corrosion resistance of austenitic steel",
+                "Higher resistance to chloride pitting and stress corrosion cracking than standard stainless grades"
+              ]
+            },
+            "specification_order": [
+              "Duplex Steel Properties"
+            ]
           }
         ]
       },
@@ -438472,6 +438910,161 @@ export const catalog = [
               "Alloy Steel Properties",
               "Finish"
             ]
+          },
+          {
+            "slug": "alloy-steel-hex-bar",
+            "name": "Alloy Steel Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/alloy-steel-hex-bar.jpg",
+              "alt": "Alloy Steel Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/alloy-steel-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/alloy-steel-hex-bar-1.jpg",
+                "alt": "Alloy Steel Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/alloy-steel-hex-bar-2.jpg",
+                "alt": "Alloy Steel Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Alloy Steel Properties": [
+                "Higher tensile and yield strength than standard carbon steel",
+                "Retains mechanical properties at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Alloy Steel Properties"
+            ]
+          },
+          {
+            "slug": "alloy-steel-square-bar",
+            "name": "Alloy Steel Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/alloy-steel-square-bar.jpg",
+              "alt": "Alloy Steel Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/alloy-steel-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/alloy-steel-square-bar-1.jpg",
+                "alt": "Alloy Steel Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/alloy-steel-square-bar-2.jpg",
+                "alt": "Alloy Steel Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Alloy Steel Properties": [
+                "Higher tensile and yield strength than standard carbon steel",
+                "Retains mechanical properties at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Alloy Steel Properties"
+            ]
+          },
+          {
+            "slug": "alloy-steel-flat-bar",
+            "name": "Alloy Steel Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/alloy-steel-flat-bar.jpg",
+              "alt": "Alloy Steel Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/alloy-steel-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/alloy-steel-flat-bar-1.jpg",
+                "alt": "Alloy Steel Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/alloy-steel-flat-bar-2.jpg",
+                "alt": "Alloy Steel Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Alloy Steel Properties": [
+                "Higher tensile and yield strength than standard carbon steel",
+                "Retains mechanical properties at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Alloy Steel Properties"
+            ]
+          },
+          {
+            "slug": "alloy-steel-rectangle-bar",
+            "name": "Alloy Steel Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/alloy-steel-rectangle-bar.jpg",
+              "alt": "Alloy Steel Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/alloy-steel-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/alloy-steel-rectangle-bar-1.jpg",
+                "alt": "Alloy Steel Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/alloy-steel-rectangle-bar-2.jpg",
+                "alt": "Alloy Steel Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Alloy Steel Properties": [
+                "Higher tensile and yield strength than standard carbon steel",
+                "Retains mechanical properties at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Alloy Steel Properties"
+            ]
+          },
+          {
+            "slug": "alloy-steel-bus-bar",
+            "name": "Alloy Steel Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/alloy-steel-bus-bar.jpg",
+              "alt": "Alloy Steel Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/alloy-steel-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/alloy-steel-bus-bar-1.jpg",
+                "alt": "Alloy Steel Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/alloy-steel-bus-bar-2.jpg",
+                "alt": "Alloy Steel Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Alloy Steel Properties": [
+                "Higher tensile and yield strength than standard carbon steel",
+                "Retains mechanical properties at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Alloy Steel Properties"
+            ]
           }
         ]
       },
@@ -438540,6 +439133,161 @@ export const catalog = [
             },
             "specification_order": [
               "Finish"
+            ]
+          },
+          {
+            "slug": "ms-hex-bar",
+            "name": "MS Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ms-hex-bar.jpg",
+              "alt": "MS Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ms-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ms-hex-bar-1.jpg",
+                "alt": "MS Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ms-hex-bar-2.jpg",
+                "alt": "MS Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Carbon Steel Properties": [
+                "Cost-effective general engineering and structural steel",
+                "Good weldability and machinability"
+              ]
+            },
+            "specification_order": [
+              "Carbon Steel Properties"
+            ]
+          },
+          {
+            "slug": "ms-square-bar",
+            "name": "MS Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ms-square-bar.jpg",
+              "alt": "MS Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ms-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ms-square-bar-1.jpg",
+                "alt": "MS Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ms-square-bar-2.jpg",
+                "alt": "MS Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Carbon Steel Properties": [
+                "Cost-effective general engineering and structural steel",
+                "Good weldability and machinability"
+              ]
+            },
+            "specification_order": [
+              "Carbon Steel Properties"
+            ]
+          },
+          {
+            "slug": "ms-flat-bar",
+            "name": "MS Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ms-flat-bar.jpg",
+              "alt": "MS Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ms-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ms-flat-bar-1.jpg",
+                "alt": "MS Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ms-flat-bar-2.jpg",
+                "alt": "MS Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Carbon Steel Properties": [
+                "Cost-effective general engineering and structural steel",
+                "Good weldability and machinability"
+              ]
+            },
+            "specification_order": [
+              "Carbon Steel Properties"
+            ]
+          },
+          {
+            "slug": "ms-rectangle-bar",
+            "name": "MS Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ms-rectangle-bar.jpg",
+              "alt": "MS Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ms-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ms-rectangle-bar-1.jpg",
+                "alt": "MS Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ms-rectangle-bar-2.jpg",
+                "alt": "MS Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Carbon Steel Properties": [
+                "Cost-effective general engineering and structural steel",
+                "Good weldability and machinability"
+              ]
+            },
+            "specification_order": [
+              "Carbon Steel Properties"
+            ]
+          },
+          {
+            "slug": "ms-bus-bar",
+            "name": "MS Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/ms-bus-bar.jpg",
+              "alt": "MS Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/ms-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/ms-bus-bar-1.jpg",
+                "alt": "MS Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/ms-bus-bar-2.jpg",
+                "alt": "MS Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Carbon Steel Properties": [
+                "Cost-effective general engineering and structural steel",
+                "Good weldability and machinability"
+              ]
+            },
+            "specification_order": [
+              "Carbon Steel Properties"
             ]
           }
         ]
@@ -438633,6 +439381,378 @@ export const catalog = [
             "specifications": {
               "Properties": [
                 "Round bar stock supplied to standard mill lengths and diameters"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "inconel-hex-bar",
+            "name": "Inconel Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/inconel-hex-bar.jpg",
+              "alt": "Inconel Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/inconel-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/inconel-hex-bar-1.jpg",
+                "alt": "Inconel Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/inconel-hex-bar-2.jpg",
+                "alt": "Inconel Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Retains high strength and oxidation resistance at elevated temperatures",
+                "Excellent resistance to pitting, crevice corrosion and chloride stress-cracking"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "inconel-square-bar",
+            "name": "Inconel Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/inconel-square-bar.jpg",
+              "alt": "Inconel Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/inconel-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/inconel-square-bar-1.jpg",
+                "alt": "Inconel Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/inconel-square-bar-2.jpg",
+                "alt": "Inconel Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Retains high strength and oxidation resistance at elevated temperatures",
+                "Excellent resistance to pitting, crevice corrosion and chloride stress-cracking"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "inconel-flat-bar",
+            "name": "Inconel Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/inconel-flat-bar.jpg",
+              "alt": "Inconel Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/inconel-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/inconel-flat-bar-1.jpg",
+                "alt": "Inconel Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/inconel-flat-bar-2.jpg",
+                "alt": "Inconel Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Retains high strength and oxidation resistance at elevated temperatures",
+                "Excellent resistance to pitting, crevice corrosion and chloride stress-cracking"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "inconel-rectangle-bar",
+            "name": "Inconel Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/inconel-rectangle-bar.jpg",
+              "alt": "Inconel Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/inconel-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/inconel-rectangle-bar-1.jpg",
+                "alt": "Inconel Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/inconel-rectangle-bar-2.jpg",
+                "alt": "Inconel Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Retains high strength and oxidation resistance at elevated temperatures",
+                "Excellent resistance to pitting, crevice corrosion and chloride stress-cracking"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "monel-hex-bar",
+            "name": "Monel Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/monel-hex-bar.jpg",
+              "alt": "Monel Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/monel-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/monel-hex-bar-1.jpg",
+                "alt": "Monel Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/monel-hex-bar-2.jpg",
+                "alt": "Monel Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Nickel-copper alloy with excellent resistance to seawater and hydrofluoric acid",
+                "Retains good strength and toughness down to sub-zero temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "monel-square-bar",
+            "name": "Monel Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/monel-square-bar.jpg",
+              "alt": "Monel Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/monel-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/monel-square-bar-1.jpg",
+                "alt": "Monel Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/monel-square-bar-2.jpg",
+                "alt": "Monel Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Nickel-copper alloy with excellent resistance to seawater and hydrofluoric acid",
+                "Retains good strength and toughness down to sub-zero temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "monel-flat-bar",
+            "name": "Monel Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/monel-flat-bar.jpg",
+              "alt": "Monel Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/monel-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/monel-flat-bar-1.jpg",
+                "alt": "Monel Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/monel-flat-bar-2.jpg",
+                "alt": "Monel Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Nickel-copper alloy with excellent resistance to seawater and hydrofluoric acid",
+                "Retains good strength and toughness down to sub-zero temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "monel-rectangle-bar",
+            "name": "Monel Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/monel-rectangle-bar.jpg",
+              "alt": "Monel Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/monel-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/monel-rectangle-bar-1.jpg",
+                "alt": "Monel Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/monel-rectangle-bar-2.jpg",
+                "alt": "Monel Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Nickel-copper alloy with excellent resistance to seawater and hydrofluoric acid",
+                "Retains good strength and toughness down to sub-zero temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "hastelloy-hex-bar",
+            "name": "Hastelloy Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/hastelloy-hex-bar.jpg",
+              "alt": "Hastelloy Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/hastelloy-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/hastelloy-hex-bar-1.jpg",
+                "alt": "Hastelloy Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/hastelloy-hex-bar-2.jpg",
+                "alt": "Hastelloy Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Exceptional resistance to a wide range of aggressive, highly corrosive chemical environments",
+                "Retains strength and corrosion resistance at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "hastelloy-square-bar",
+            "name": "Hastelloy Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/hastelloy-square-bar.jpg",
+              "alt": "Hastelloy Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/hastelloy-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/hastelloy-square-bar-1.jpg",
+                "alt": "Hastelloy Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/hastelloy-square-bar-2.jpg",
+                "alt": "Hastelloy Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Exceptional resistance to a wide range of aggressive, highly corrosive chemical environments",
+                "Retains strength and corrosion resistance at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "hastelloy-flat-bar",
+            "name": "Hastelloy Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/hastelloy-flat-bar.jpg",
+              "alt": "Hastelloy Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/hastelloy-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/hastelloy-flat-bar-1.jpg",
+                "alt": "Hastelloy Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/hastelloy-flat-bar-2.jpg",
+                "alt": "Hastelloy Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Exceptional resistance to a wide range of aggressive, highly corrosive chemical environments",
+                "Retains strength and corrosion resistance at elevated temperatures"
+              ]
+            },
+            "specification_order": [
+              "Properties"
+            ]
+          },
+          {
+            "slug": "hastelloy-rectangle-bar",
+            "name": "Hastelloy Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/hastelloy-rectangle-bar.jpg",
+              "alt": "Hastelloy Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/hastelloy-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/hastelloy-rectangle-bar-1.jpg",
+                "alt": "Hastelloy Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/hastelloy-rectangle-bar-2.jpg",
+                "alt": "Hastelloy Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Properties": [
+                "Exceptional resistance to a wide range of aggressive, highly corrosive chemical environments",
+                "Retains strength and corrosion resistance at elevated temperatures"
               ]
             },
             "specification_order": [
@@ -440002,6 +441122,166 @@ export const catalog = [
             "specification_order": [
               "Brass Properties"
             ]
+          },
+          {
+            "slug": "brass-hex-bar",
+            "name": "Brass Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/brass-hex-bar.jpg",
+              "alt": "Brass Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/brass-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/brass-hex-bar-1.jpg",
+                "alt": "Brass Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/brass-hex-bar-2.jpg",
+                "alt": "Brass Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Brass Properties": [
+                "Naturally corrosion resistant, including in humid and marine air",
+                "Non-sparking — suited to environments with flammable vapours",
+                "Good electrical conductivity and low friction against mating threads"
+              ]
+            },
+            "specification_order": [
+              "Brass Properties"
+            ]
+          },
+          {
+            "slug": "brass-square-bar",
+            "name": "Brass Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/brass-square-bar.jpg",
+              "alt": "Brass Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/brass-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/brass-square-bar-1.jpg",
+                "alt": "Brass Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/brass-square-bar-2.jpg",
+                "alt": "Brass Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Brass Properties": [
+                "Naturally corrosion resistant, including in humid and marine air",
+                "Non-sparking — suited to environments with flammable vapours",
+                "Good electrical conductivity and low friction against mating threads"
+              ]
+            },
+            "specification_order": [
+              "Brass Properties"
+            ]
+          },
+          {
+            "slug": "brass-flat-bar",
+            "name": "Brass Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/brass-flat-bar.jpg",
+              "alt": "Brass Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/brass-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/brass-flat-bar-1.jpg",
+                "alt": "Brass Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/brass-flat-bar-2.jpg",
+                "alt": "Brass Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Brass Properties": [
+                "Naturally corrosion resistant, including in humid and marine air",
+                "Non-sparking — suited to environments with flammable vapours",
+                "Good electrical conductivity and low friction against mating threads"
+              ]
+            },
+            "specification_order": [
+              "Brass Properties"
+            ]
+          },
+          {
+            "slug": "brass-rectangle-bar",
+            "name": "Brass Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/brass-rectangle-bar.jpg",
+              "alt": "Brass Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/brass-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/brass-rectangle-bar-1.jpg",
+                "alt": "Brass Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/brass-rectangle-bar-2.jpg",
+                "alt": "Brass Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Brass Properties": [
+                "Naturally corrosion resistant, including in humid and marine air",
+                "Non-sparking — suited to environments with flammable vapours",
+                "Good electrical conductivity and low friction against mating threads"
+              ]
+            },
+            "specification_order": [
+              "Brass Properties"
+            ]
+          },
+          {
+            "slug": "brass-bus-bar",
+            "name": "Brass Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/brass-bus-bar.jpg",
+              "alt": "Brass Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/brass-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/brass-bus-bar-1.jpg",
+                "alt": "Brass Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/brass-bus-bar-2.jpg",
+                "alt": "Brass Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Brass Properties": [
+                "Naturally corrosion resistant, including in humid and marine air",
+                "Non-sparking — suited to environments with flammable vapours",
+                "Good electrical conductivity and low friction against mating threads"
+              ]
+            },
+            "specification_order": [
+              "Brass Properties"
+            ]
           }
         ]
       },
@@ -440038,6 +441318,161 @@ export const catalog = [
             },
             "specification_order": [
               "Properties"
+            ]
+          },
+          {
+            "slug": "copper-hex-bar",
+            "name": "Copper Hex Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/copper-hex-bar.jpg",
+              "alt": "Copper Hex Bar",
+              "title": null,
+              "local_path": "/images/round-bars/copper-hex-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/copper-hex-bar-1.jpg",
+                "alt": "Copper Hex Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/copper-hex-bar-2.jpg",
+                "alt": "Copper Hex Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Copper Properties": [
+                "Excellent electrical and thermal conductivity",
+                "Naturally corrosion resistant with a distinctive reddish-brown finish"
+              ]
+            },
+            "specification_order": [
+              "Copper Properties"
+            ]
+          },
+          {
+            "slug": "copper-square-bar",
+            "name": "Copper Square Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/copper-square-bar.jpg",
+              "alt": "Copper Square Bar",
+              "title": null,
+              "local_path": "/images/round-bars/copper-square-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/copper-square-bar-1.jpg",
+                "alt": "Copper Square Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/copper-square-bar-2.jpg",
+                "alt": "Copper Square Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Copper Properties": [
+                "Excellent electrical and thermal conductivity",
+                "Naturally corrosion resistant with a distinctive reddish-brown finish"
+              ]
+            },
+            "specification_order": [
+              "Copper Properties"
+            ]
+          },
+          {
+            "slug": "copper-flat-bar",
+            "name": "Copper Flat Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/copper-flat-bar.jpg",
+              "alt": "Copper Flat Bar",
+              "title": null,
+              "local_path": "/images/round-bars/copper-flat-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/copper-flat-bar-1.jpg",
+                "alt": "Copper Flat Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/copper-flat-bar-2.jpg",
+                "alt": "Copper Flat Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Copper Properties": [
+                "Excellent electrical and thermal conductivity",
+                "Naturally corrosion resistant with a distinctive reddish-brown finish"
+              ]
+            },
+            "specification_order": [
+              "Copper Properties"
+            ]
+          },
+          {
+            "slug": "copper-rectangle-bar",
+            "name": "Copper Rectangle Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/copper-rectangle-bar.jpg",
+              "alt": "Copper Rectangle Bar",
+              "title": null,
+              "local_path": "/images/round-bars/copper-rectangle-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/copper-rectangle-bar-1.jpg",
+                "alt": "Copper Rectangle Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/copper-rectangle-bar-2.jpg",
+                "alt": "Copper Rectangle Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Copper Properties": [
+                "Excellent electrical and thermal conductivity",
+                "Naturally corrosion resistant with a distinctive reddish-brown finish"
+              ]
+            },
+            "specification_order": [
+              "Copper Properties"
+            ]
+          },
+          {
+            "slug": "copper-bus-bar",
+            "name": "Copper Bus Bar",
+            "icon": "round-bar",
+            "children": [],
+            "hero_image": {
+              "url": "/images/round-bars/copper-bus-bar.jpg",
+              "alt": "Copper Bus Bar",
+              "title": null,
+              "local_path": "/images/round-bars/copper-bus-bar.jpg"
+            },
+            "gallery": [
+              {
+                "url": "/images/round-bars/copper-bus-bar-1.jpg",
+                "alt": "Copper Bus Bar — view 1"
+              },
+              {
+                "url": "/images/round-bars/copper-bus-bar-2.jpg",
+                "alt": "Copper Bus Bar — view 2"
+              }
+            ],
+            "specifications": {
+              "Copper Properties": [
+                "Excellent electrical and thermal conductivity",
+                "Naturally corrosion resistant with a distinctive reddish-brown finish"
+              ]
+            },
+            "specification_order": [
+              "Copper Properties"
             ]
           }
         ]
