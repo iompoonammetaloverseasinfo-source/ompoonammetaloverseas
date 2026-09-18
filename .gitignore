@@ -4,3 +4,6 @@ out
 .DS_Store
 *.log
 .env*.local
+
+# Generated at build time by scripts/build-search-index.mjs (prebuild hook)
+/public/search-index.json

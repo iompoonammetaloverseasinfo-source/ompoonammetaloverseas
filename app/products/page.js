@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import PageHero from "@/components/PageHero";
 import ProductFamilySection from "@/components/ProductFamilySection";
 import CatalogCard from "@/components/CatalogCard";
@@ -5,6 +6,7 @@ import IndustriesStrip from "@/components/IndustriesStrip";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import ProductsSearchEntry from "@/components/ProductsSearchEntry";
 import { productFamilies } from "@/data/products";
 import { catalog } from "@/data/catalog";
 import { categoryImages } from "@/data/categoryImages";
@@ -49,6 +51,14 @@ export default function ProductsPage() {
         title="Every grade we stock, in one place"
         description="Browse by material grade below, or by product type — pipes, fittings, flanges, valves, fasteners and more — each with its own sub-types."
       />
+
+      <section className="bg-paper py-6">
+        <div className="wrap max-w-xl">
+          <Suspense fallback={null}>
+            <ProductsSearchEntry />
+          </Suspense>
+        </div>
+      </section>
 
       <section className="section bg-mist-50">
         <div className="wrap space-y-6">
