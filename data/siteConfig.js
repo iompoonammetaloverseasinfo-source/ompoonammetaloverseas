@@ -12,7 +12,12 @@
 // Nothing else to touch.
 // ---------------------------------------------------------------------------
 
-export const siteUrl = "https://www.ompoonammetaloverseas.com";
+// The www host 307-redirects here (Vercel's configured primary domain), so
+// this is the only URL that resolves without a redirect hop — every
+// canonical tag, sitemap entry, and structured-data URL must match it, or
+// Google is told a page's canonical URL is one that immediately redirects
+// away from itself.
+export const siteUrl = "https://ompoonammetaloverseas.com";
 
 export const siteConfig = {
   name: "Om Poonam Metal Overseas",

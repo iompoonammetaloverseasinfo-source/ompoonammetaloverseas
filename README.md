@@ -93,7 +93,7 @@ the most useful thing to send back is the exact device/browser (e.g.
 1. **Domain name.** Every SEO tag (sitemap, canonical URLs, Open Graph)
    reads from one constant. Open `data/siteConfig.js` and change:
    ```js
-   export const siteUrl = "https://www.ompoonammetaloverseas.com";
+   export const siteUrl = "https://ompoonammetaloverseas.com";
    ```
    to your real domain once you have one. Everything else updates itself.
 
