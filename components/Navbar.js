@@ -11,6 +11,7 @@ import { pages, siteConfig } from "@/data/siteConfig";
 import { company } from "@/data/company";
 import { catalog } from "@/data/catalog";
 import Image from "next/image";
+import ProductSearch from "./ProductSearch";
 
 // Sub-links shown in the Products dropdown (desktop) and accordion (mobile).
 const productLinks = [
@@ -183,6 +184,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lg:flex shrink-0 items-center gap-5">
+          <ProductSearch variant="icon" />
           <a
             href={`tel:${company.contact.phoneE164}`}
             className="flex items-center gap-2 text-sm font-bold text-graphite-600 hover:text-graphite-900 transition-colors"
@@ -198,16 +200,19 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center text-graphite-900"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        {/* Mobile: search + menu toggle */}
+        <div className="flex shrink-0 items-center gap-1 lg:hidden">
+          <ProductSearch variant="icon" />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center text-graphite-900"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu panel */}

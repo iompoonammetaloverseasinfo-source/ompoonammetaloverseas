@@ -116,6 +116,22 @@ const organizationJsonLd = {
   sameAs: [],
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: siteConfig.name,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/products?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": ["Store", "LocalBusiness"],
@@ -141,6 +157,7 @@ export default function RootLayout({ children }) {
       <body>
         <PageLoader />
         <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
         <JsonLd data={localBusinessJsonLd} />
         <Navbar />
         <main>{children}</main>

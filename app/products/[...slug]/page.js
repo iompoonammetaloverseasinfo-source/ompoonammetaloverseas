@@ -13,25 +13,78 @@ import ScrollReveal from "@/components/ScrollReveal";
 import DataTable from "@/components/DataTable";
 import Gallery from "@/components/Gallery";
 import CatalogueDownload from "@/components/CatalogueDownload";
+import JsonLd from "@/components/JsonLd";
 import { catalog, flattenCatalog, findCatalogNode, groupDataTables } from "@/data/catalog";
 import { siteUrl } from "@/data/siteConfig";
+import { company } from "@/data/company";
 
 export function generateStaticParams() {
   return flattenCatalog(catalog).map((entry) => ({ slug: entry.path }));
 }
 
+// Picks the node's own photo the same way the page body does, so
+// generateMetadata (which runs separately, ahead of the component render)
+// shows the right image in link previews instead of always falling back
+// to the site-wide og-image.
+function pickImage(node) {
+  return node.hero_image?.local_path || node.hero_image?.url || node.image || "/images/og-image.jpg";
+}
+
+// Some un-rescraped nodes' hero_image.url still points at the old
+// scraper's external image host rather than a local path — guard against
+// double-prefixing those with siteUrl when building absolute URLs for
+// JSON-LD, which (unlike next/metadata) doesn't resolve relative URLs on
+// its own.
+function absoluteUrl(pathOrUrl) {
+  return /^https?:\/\//.test(pathOrUrl) ? pathOrUrl : `${siteUrl}${pathOrUrl}`;
+}
+
+// Builds a title that's unique per page even when the node's own name is a
+// generic, reused label (e.g. every material's "Alloy Steel" sub-group, or
+// a specific grade page that recurs under more than one parent). Appends
+// just enough breadcrumb context — the immediate parent, plus the
+// top-level category if that's not already the same thing — to
+// disambiguate, without dragging in the full breadcrumb on every page.
+function buildTitle(node, trail) {
+  const parent = trail.length > 1 ? trail[trail.length - 2] : null;
+  const top = trail[0];
+  const context = [];
+  if (parent && parent.name !== node.name) context.push(parent.name);
+  if (top && top !== parent && top.name !== node.name && !context.includes(top.name)) {
+    context.push(top.name);
+  }
+  return context.length ? `${node.name} — ${context.join(" / ")}` : node.name;
+}
+
 export function generateMetadata({ params }) {
   const result = findCatalogNode(params.slug);
   if (!result) return {};
-  const { node } = result;
+  const { node, trail } = result;
   const description =
     node.description ||
     `${node.name} supplied by Om Poonam Metal Overseas — ISO 9001:2015 certified metal stockists, Ahmedabad.`;
   const path = `/products/${params.slug.join("/")}`;
+  const url = `${siteUrl}${path}`;
+  const title = buildTitle(node, trail);
+  const image = pickImage(node);
+
   return {
-    title: `${node.name} — Products`,
+    title,
     description,
-    alternates: { canonical: `${siteUrl}${path}` },
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      url,
+      title,
+      description,
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 
@@ -179,8 +232,42 @@ const heroImage = node.hero_image
       : "/products";
   const backLabel = trail.length > 1 ? trail[trail.length - 2].name : "Products";
 
+  // BreadcrumbList on every page (drives Google's breadcrumb rich result);
+  // Product schema only on leaf/product pages, not on pure listing
+  // categories — matches how e-commerce sites scope Product markup to
+  // actual SKU-level pages.
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.label,
+      item: `${siteUrl}${item.href}`,
+    })),
+  };
+
+  const productJsonLd = !hasChildren
+    ? {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: node.name,
+      description:
+        node.description ||
+        `${node.name} supplied by Om Poonam Metal Overseas — ISO 9001:2015 certified metal stockists, Ahmedabad.`,
+      image: absoluteUrl(heroImage.src),
+      url: absoluteUrl(`/products/${params.slug.join("/")}`),
+      brand: { "@type": "Brand", name: company.legalTradeName },
+      manufacturer: { "@type": "Organization", name: company.legalTradeName },
+      ...(node.grades?.length ? { material: node.grades.join(", ") } : {}),
+      category: trail[0]?.name,
+    }
+    : null;
+
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+      {productJsonLd && <JsonLd data={productJsonLd} />}
       <section className="relative overflow-hidden bg-graphite-900 pt-[68px]">
         <div className="absolute inset-0 grid-backdrop-dark opacity-100" aria-hidden="true" />
         <div className="wrap relative py-12 sm:py-16">
