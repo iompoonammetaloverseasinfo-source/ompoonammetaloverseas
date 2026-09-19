@@ -46,6 +46,13 @@ const slides = [
     caption: "Cold drawn welded (CDW) tubing to precision OD & wall thickness",
     href: "/products/pipe-and-tube",
   },
+  {
+    src: "/slides/fastners.jpg",
+    alt: "Stainless steel fasteners including bolts, nuts and screws in stock",
+    label: "Fasteners",
+    caption: "Bolts, nuts, screws, rivets and washers in stainless and alloy grades",
+    href: "/products/fasteners",
+  },
 ];
 
 const SLIDE_DURATION = 5200;

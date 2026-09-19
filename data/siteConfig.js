@@ -21,7 +21,7 @@ export const siteUrl = "https://ompoonammetaloverseas.com";
 
 export const siteConfig = {
   name: "Om Poonam Metal Overseas",
-  shortName: "OPMO",
+  shortName: "OMPMO",
   tagline: "Stockists, Traders & Suppliers of Stainless, Alloy & Non-Ferrous Metals",
    description:
     "Om Poonam Metal Overseas is an ISO 9001:2015 certified stockist, trader, importer and exporter of stainless steel, alloy steel, ferrous and non-ferrous metals, based in Ahmedabad, Gujarat, India.",

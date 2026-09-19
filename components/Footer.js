@@ -76,7 +76,7 @@ export default function Footer() {
 
       <div className="border-t border-graphite-200">
         <div className="wrap py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-graphite-500">
-          <p>© {year} Om Poonam Metal Overseas. All rights reserved.</p>
+          <p>© {year} {siteConfig.name} ({siteConfig.shortName}). All rights reserved.</p>
           <p className="font-mono uppercase tracking-wider">
             Prop. {company.proprietor} · Ahmedabad, Gujarat
           </p>

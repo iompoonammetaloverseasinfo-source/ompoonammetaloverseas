@@ -18,7 +18,7 @@ import { Truck, ScanSearch, Settings2, PackageCheck } from "lucide-react";
 import { company } from "@/data/company";
 import { catalog } from "@/data/catalog";
 import { categoryImages } from "@/data/categoryImages";
-import { siteUrl } from "@/data/siteConfig";
+import { siteUrl, siteConfig } from "@/data/siteConfig";
 
 export const metadata = {
   title: "About Us",
@@ -152,7 +152,7 @@ export default function AboutPage() {
             </h2>
             <div className="mt-6 space-y-4 text-graphite-600 leading-relaxed">
               <p>
-                {company.legalTradeName} started as a metal stocking and
+                {company.legalTradeName} ({siteConfig.shortName}) started as a metal stocking and
                 trading operation in the Rakhial industrial belt of
                 Ahmedabad, founded in {company.founded} — the kind of
                 address where buyers still walk in, check the material
@@ -225,7 +225,7 @@ export default function AboutPage() {
                   fallback={
                     <div className="flex h-full w-full items-center justify-center">
                       <span className="font-display text-lg font-bold text-graphite-300">
-                        OPMO
+                        OMPMO
                       </span>
                     </div>
                   }

@@ -23,6 +23,7 @@ export const metadata = {
     "Inconel Hastelloy Monel supplier India",
     "ISO 9001 certified metal exporter",
     "Om Poonam Metal Overseas",
+    siteConfig.shortName,
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
